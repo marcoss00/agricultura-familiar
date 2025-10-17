@@ -7,6 +7,7 @@ const Navigation = () => {
 
   const navItems = [
     { label: "Início", href: "#home" },
+    { label: "IPCAF", href: "#ipcaf" },
     { label: "Resultados", href: "#results" },
     { label: "Conscientização", href: "#awareness" },
     { label: "Sobre a Pesquisa", href: "#about" },
@@ -27,7 +28,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <h1 className="text-xl font-bold bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
-              Agricultura Familiar & Universidades
+              Agricultura Familiar & Universidades Federais
             </h1>
           </div>
 

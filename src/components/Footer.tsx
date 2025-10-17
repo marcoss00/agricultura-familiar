@@ -5,11 +5,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-nature-light to-earth-light bg-clip-text text-transparent">
-              Agricultura Familiar & Universidades
+              Universidades Federais & Agricultura Familiar
             </h3>
             <p className="text-muted opacity-80 leading-relaxed">
-              Pesquisa dedicada ao fortalecimento das relações entre universidades federais 
-              e agricultura familiar no estado do Pará.
+              Pesquisa dedicada ao fortalecimento das relações entre universidade federais e agricultura familiar.
             </p>
           </div>
           
@@ -22,6 +21,14 @@ const Footer = () => {
                   className="opacity-80 hover:opacity-100 transition-opacity"
                 >
                   Início
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => document.querySelector("#ipcaf")?.scrollIntoView({ behavior: "smooth" })}
+                  className="opacity-80 hover:opacity-100 transition-opacity"
+                >
+                  IPCAF
                 </button>
               </li>
               <li>
@@ -54,16 +61,15 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contato</h4>
             <ul className="space-y-2 text-sm opacity-80">
-              <li>pesquisa.agriculturafamiliar@gmail.com</li>
+              <li>xlouzada@live.com</li>
               <li>Belém, Pará, Brasil</li>
-              <li>Universidade Federal do Pará</li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-muted/20 mt-8 pt-8 text-center">
           <p className="text-sm opacity-60">
-            © 2024 Pesquisa de Doutorado - Agricultura Familiar e Universidades do Pará. 
+            © 2025 Produto da Pesquisa de Tese de Doutorado – Universidades Federais & Agricultura Familiar.
             Todos os direitos reservados.
           </p>
         </div>

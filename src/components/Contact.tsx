@@ -50,11 +50,11 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
-            Entre em Contato
+            Contato
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Interessado em colaborar, conhecer mais detalhes da pesquisa ou compartilhar experiências? 
-            Vamos conversar sobre como fortalecer a agricultura familiar nas universidades.
+            Vamos conversar sobre como fortalecer a agricultura familiar nas Universidade Federais.
           </p>
         </div>
 
@@ -81,12 +81,12 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground">Email</h4>
-                      <p className="text-muted-foreground">pesquisa.agriculturafamiliar@gmail.com</p>
+                      <p className="text-muted-foreground">xlouzada@live.com</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-
+              {/*
               <Card className="shadow-md hover:shadow-lg transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
@@ -100,7 +100,8 @@ const Contact = () => {
                   </div>
                 </CardContent>
               </Card>
-
+              */}
+              {/*
               <Card className="shadow-md hover:shadow-lg transition-shadow duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
@@ -114,6 +115,7 @@ const Contact = () => {
                   </div>
                 </CardContent>
               </Card>
+              */}
             </div>
 
             <div className="bg-gradient-to-r from-nature/10 to-earth/10 p-6 rounded-xl">
@@ -131,6 +133,7 @@ const Contact = () => {
           </div>
 
           {/* Formulário de Contato */}
+          {/*
           <Card className="shadow-lg">
             <CardHeader>
               <CardTitle className="text-nature">Envie sua Mensagem</CardTitle>
@@ -212,6 +215,7 @@ const Contact = () => {
               </form>
             </CardContent>
           </Card>
+          */}
         </div>
       </div>
     </section>

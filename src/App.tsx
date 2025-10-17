@@ -9,21 +9,6 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <>
-    <div style={{
-      background: '#f59e42',
-      color: '#fff',
-      padding: '10px',
-      textAlign: 'center',
-      fontWeight: 'bold',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100%',
-      zIndex: 9999
-    }}>
-      🚧 Este site está em desenvolvimento! 🚧
-    </div>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
@@ -37,7 +22,6 @@ const App = () => (
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-  </>
 );
 
 export default App;

@@ -13,10 +13,8 @@ const Results = () => {
   ];
 
   const productData = [
-    { name: "Verduras", value: 35, color: "hsl(var(--nature))" },
-    { name: "Frutas", value: 28, color: "hsl(var(--earth))" },
-    { name: "Grãos", value: 20, color: "hsl(var(--nature-light))" },
-    { name: "Outros", value: 17, color: "hsl(var(--earth-light))" },
+    { name: "UFRA", value: 2.22, color: "hsl(0, 80%, 55%)" },      // vermelho médio
+    { name: "UFPA", value: 97.78, color: "hsl(140, 50%, 50%)" },    // verde um pouco claro
   ];
 
   const universityData = [
@@ -180,8 +178,10 @@ const Results = () => {
           {/* Distribuição por Produtos */}
           <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
-              <CardTitle className="text-earth">Distribuição por Tipo de Produto</CardTitle>
-              <CardDescription>Percentual dos produtos adquiridos</CardDescription>
+              <CardTitle className="text-earth">Gráfico Relativo ao Indicador</CardTitle>
+              <CardDescription>da Frequência Relativa Percentual por Instituição em
+                relação ao Montante das Compras da Agricultura Familiar das Universidades Federais
+                Paraenses entre 2017 a 2024.</CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>

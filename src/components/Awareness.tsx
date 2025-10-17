@@ -5,34 +5,25 @@ const Awareness = () => {
   const benefits = [
     {
       icon: <Users className="w-12 h-12 text-nature mb-4" />,
-      title: "Impacto Social",
-      description: "Fortalece comunidades rurais, gera emprego e renda para famílias agricultoras, promovendo inclusão social e reduzindo desigualdades."
+      title: "Desenvolvimento Local",
+      description: "Fortalece a agricultura familiar, gera emprego e renda para as famílias, promovendo inclusão social e reduzindo desigualdades."
     },
     {
       icon: <TrendingUp className="w-12 h-12 text-earth mb-4" />,
-      title: "Desenvolvimento Econômico",
-      description: "Movimenta a economia local, cria cadeias curtas de comercialização e aumenta a competitividade dos pequenos produtores."
+      title: "Economia Circular",
+      description: "Movimenta a economia local, cria circuitos curtos de comercialização e aumenta a produtividade dos pequenos produtores."
     },
     {
       icon: <Leaf className="w-12 h-12 text-nature mb-4" />,
       title: "Sustentabilidade Ambiental",
-      description: "Promove práticas agrícolas sustentáveis, reduz pegada de carbono no transporte e preserva a biodiversidade local."
+      description: "Promove práticas agroecológicas, sistemas agroflorestais e preserva a biodiversidade local."
     },
     {
       icon: <Heart className="w-12 h-12 text-earth mb-4" />,
-      title: "Segurança Alimentar",
-      description: "Garante acesso a alimentos frescos, nutritivos e culturalmente apropriados para a comunidade universitária."
+      title: "Segurança Alimentar e Nutricional",
+      description: "Garante acesso a alimentos frescos, nutritivos e culturalmente apropriados para o órgão comprador."
     },
-    {
-      icon: <Recycle className="w-12 h-12 text-nature mb-4" />,
-      title: "Economia Circular",
-      description: "Cria ciclos virtuosos de produção e consumo, reduzindo desperdícios e valorizando recursos locais."
-    },
-    {
-      icon: <Award className="w-12 h-12 text-earth mb-4" />,
-      title: "Qualidade Educacional",
-      description: "Oferece oportunidades de pesquisa, extensão e vivência prática para estudantes e comunidade acadêmica."
-    }
+
   ];
 
   return (
@@ -43,8 +34,9 @@ const Awareness = () => {
             Por Que Isso Importa?
           </h2>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-            A compra de produtos da agricultura familiar pelas universidades vai muito além da alimentação. 
-            É um investimento transformador que gera benefícios sociais, econômicos e ambientais para toda a sociedade.
+            A compra de produtos da agricultura familiar pelas universidades federais
+            vai muito além da alimentação. É um investimento transformador que gera
+            benefícios sociais, econômicos e ambientais para toda a sociedade.
           </p>
         </div>
 
@@ -69,27 +61,28 @@ const Awareness = () => {
         {/* Call to Action */}
         <div className="bg-gradient-to-r from-nature/10 to-earth/10 rounded-2xl p-8 md:p-12 text-center">
           <h3 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-            Vamos Fortalecer Essa Parceria
+            Vamos Fortalecer Essa Parceria?
           </h3>
           <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Universidades, gestores públicos e agricultores familiares: juntos podemos criar 
-            um futuro mais sustentável, justo e próspero para o Pará e para o Brasil.
+            Os produtos técnicos, resultados da Tese, direcionam à ferramentas que podem ajudar as
+            Universidade Federais e Agricultores Familiares: juntos podemos criar um futuro mais
+            saudável, justo e prospero à agricultura familiar.
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="bg-card p-6 rounded-xl shadow-md">
-              <h4 className="text-xl font-semibold mb-3 text-nature">Para Universidades</h4>
+              <h4 className="text-xl font-semibold mb-3 text-nature">Para Universidades Federais</h4>
               <p className="text-muted-foreground">
-                Ampliem seus programas de compra institucional, criem parcerias diretas 
-                com agricultores e invistam em projetos de extensão rural.
+                Conheça a Nota Técnica e Minuta de Resolução Normativa para sua Instituição como
+                ferramentas de implementação efetiva da política.
               </p>
             </div>
-            
+
             <div className="bg-card p-6 rounded-xl shadow-md">
-              <h4 className="text-xl font-semibold mb-3 text-earth">Para Agricultores</h4>
+              <h4 className="text-xl font-semibold mb-3 text-earth">Para Agricultores Familiares</h4>
               <p className="text-muted-foreground">
-                Organizem-se em cooperativas, invistam em qualificação e busquem 
-                certificações que facilitem o acesso ao mercado institucional.
+                Conheça o Guia Explicativo e de Orientação para os grupos de agricultores como forma de
+                acesso à informação e participação ativa do mercado institucional de alimentos.
               </p>
             </div>
           </div>

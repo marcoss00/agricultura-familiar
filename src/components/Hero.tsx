@@ -25,18 +25,18 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 text-center lg:text-left">
         <div className="max-w-4xl mx-auto lg:mx-0">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            <span className="block text-foreground">Fortalecendo</span>
+            <span className="block text-foreground">Fortalecendo a</span>
             <span className="block bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
               Agricultura Familiar
             </span>
             <span className="block text-foreground text-3xl md:text-4xl lg:text-5xl mt-2">
-              nas Universidades do Pará
+              por meio das Universidades Federais
             </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Descobrindo como as universidades federais paraenses podem transformar 
-            vidas através da compra direta de produtos da agricultura familiar.
+            Analisando a construção de um índice de potencialidade das compras da Agricultura Familiar 
+            nas Universidades Federais Paraenses.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -60,16 +60,16 @@ const Hero = () => {
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto lg:mx-0">
             <div className="text-center lg:text-left">
-              <div className="text-3xl font-bold text-nature mb-2">+50</div>
-              <div className="text-muted-foreground">Agricultores Familiares</div>
+              <div className="text-3xl font-bold text-nature mb-2">+19</div>
+              <div className="text-muted-foreground">Grupos de Agricultores Familiares impactados</div>
             </div>
             <div className="text-center lg:text-left">
-              <div className="text-3xl font-bold text-earth mb-2">3</div>
+              <div className="text-3xl font-bold text-earth mb-2">4</div>
               <div className="text-muted-foreground">Universidades Federais</div>
             </div>
             <div className="text-center lg:text-left">
-              <div className="text-3xl font-bold text-nature mb-2">R$ 2M+</div>
-              <div className="text-muted-foreground">Em Compras Analisadas</div>
+              <div className="text-3xl font-bold text-nature mb-2">R$ 1,57M+</div>
+              <div className="text-muted-foreground">Em Contratos Realizados</div>
             </div>
           </div>
         </div>
