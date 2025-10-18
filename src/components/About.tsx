@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, Target, Users, BarChart3 } from "lucide-react";
+import mapaMental from "@/assets/mapa_mental.png";
 
 const About = () => {
   const objectives = [
@@ -63,6 +64,17 @@ const About = () => {
               >
                 https://repositorio.ufpa.br/jspui/handle/2011/16064
               </a>
+            </p>
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Veja também o{" "}
+              <a
+                href={mapaMental}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline font-medium"
+              >
+                Mapa Mental da Pesquisa
+              </a>.
             </p>
 
           </div>

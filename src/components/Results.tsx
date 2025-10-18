@@ -239,7 +239,7 @@ const Results = () => {
           </CardContent>
         </Card>
 
-        {/* Estatísticas Resumo */}
+        {/*
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
           <Card className="text-center shadow-lg">
             <CardContent className="pt-6">
@@ -269,6 +269,7 @@ const Results = () => {
             </CardContent>
           </Card>
         </div>
+        */}
       </div>
     </section>
   );
