@@ -35,6 +35,34 @@ const Results = () => {
     { ano: "2024", ufpa: "R$732.217,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 1, mensuracao: "BAIXO" },
   ]
 
+  const extraTables = [
+    {
+      title: "TABELA dos Valores Anuais das Compras da AF nas UF Paraenses, entre 2017 a 2024",
+      description: "",
+      data: [
+        { ANO: "2017", UFPA: "R$ 111.861,90", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 111.861,90" },
+        { ANO: "2018", UFPA: "R$ 0,00", UFRA: "R$ 34.898,62", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 34.898,62" },
+        { ANO: "2019", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+        { ANO: "2020", UFPA: "R$ 295.056,67", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 295.056,67" },
+        { ANO: "2021", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+      ],
+      note: ""
+    },
+    {
+      title: "Tabela 2 — Distribuição dos Itens Comprados",
+      description: "Principais grupos alimentares adquiridos pelas universidades federais.",
+      data: [
+        { categoria: "Hortaliças", valor: "40%" },
+        { categoria: "Frutas", valor: "25%" },
+        { categoria: "Grãos", valor: "20%" },
+        { categoria: "Outros", valor: "15%" },
+      ],
+      note: "A predominância de hortaliças reflete a produção regional e sazonal."
+    },
+    // ...adicione mais 3 tabelas aqui
+  ];
+
+
   return (
     <section id="results" className="py-20 bg-accent/30">
       <div className="container mx-auto px-4">
@@ -43,8 +71,14 @@ const Results = () => {
             Resultados da Pesquisa
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Dados coletados e analisados das compras realizadas pelas universidades federais
-            do Pará junto aos agricultores familiares entre 2019 e 2023.
+            A pesquisa se concentrou nas Universidades Federais Paraenses, quais sejam: a
+            Universidade Federal do Pará (UFPA), a Universidade Federal do Oeste do Pará (UFOPA),
+            a Universidade Federal do Sul e Sudeste do Pará (UNIFESSPA) e a Universidade Federal
+            Rural da Amazônia (UFRA). A Origem dos dados primários são do site Painel de Compras
+            do Governo Federal (administrado pelo Ministério da Gestão e da Inovação em Serviços
+            Públicos - MGI), uma fonte de dados primária oficial e transparente das contratações
+            públicas da esfera federal. O período temporal é de 2017 até 2024. O IPCAF foi
+            construído a partir de indicadores, conforme passamos a expor:
           </p>
         </div>
 
@@ -52,9 +86,10 @@ const Results = () => {
           {/* Tabela de Classes por Universidade */}
           <Card className="mt-12 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-nature">Classificação por UF’s de Belém</CardTitle>
+              <CardTitle className="text-nature">INDICADOR 1</CardTitle>
               <CardDescription>
-                Distribuição das universidades conforme as classes detectadas
+                MATRIZ do Indicador de Ocorrência Anual de Compras da AF nas UF
+                Paraenses entre 2017 a 2024.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -62,14 +97,46 @@ const Results = () => {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>UF’s de Belém</TableHead>
-                      <TableHead>Classe 4<br /><span className="text-xs text-muted-foreground">Ideal</span></TableHead>
-                      <TableHead>Classe 3<br /><span className="text-xs text-muted-foreground">Alta</span></TableHead>
-                      <TableHead>Classe 2<br /><span className="text-xs text-muted-foreground">Média</span></TableHead>
-                      <TableHead>Classe 1<br /><span className="text-xs text-muted-foreground">Baixa</span></TableHead>
-                      <TableHead>Classe 0<br /><span className="text-xs text-muted-foreground">Inexistente</span></TableHead>
+                      <TableHead className="bg-white">Categoria</TableHead>
+                      <TableHead className="bg-blue-100">
+                        1º<br /><span className="text-xs text-muted-foreground">Categoria</span>
+                      </TableHead>
+                      <TableHead className="bg-green-100">
+                        2º<br /><span className="text-xs text-muted-foreground">Categoria</span>
+                      </TableHead>
+                      <TableHead className="bg-yellow-100">
+                        3º<br /><span className="text-xs text-muted-foreground">Categoria</span>
+                      </TableHead>
+                      <TableHead className="bg-orange-100">
+                        4º<br /><span className="text-xs text-muted-foreground">Categoria</span>
+                      </TableHead>
+                      <TableHead className="bg-red-100">
+                        5º<br /><span className="text-xs text-muted-foreground">Categoria</span>
+                      </TableHead>
                     </TableRow>
                   </TableHeader>
+
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="bg-white">Classe</TableHead>
+                      <TableHead className="bg-blue-100">
+                        Classe 4<br /><span className="text-xs text-muted-foreground">Ideal</span>
+                      </TableHead>
+                      <TableHead className="bg-green-100">
+                        Classe 3<br /><span className="text-xs text-muted-foreground">Alta</span>
+                      </TableHead>
+                      <TableHead className="bg-yellow-100">
+                        Classe 2<br /><span className="text-xs text-muted-foreground">Média</span>
+                      </TableHead>
+                      <TableHead className="bg-orange-100">
+                        Classe 1<br /><span className="text-xs text-muted-foreground">Baixa</span>
+                      </TableHead>
+                      <TableHead className="bg-red-100">
+                        Classe 0<br /><span className="text-xs text-muted-foreground">Inexistente</span>
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+
                   <TableBody>
                     {[
                       { universidade: "UNIVERSIDADE A", c4: "Sim", c3: "Sim", c2: "Sim", c1: "Sim", c0: "Não" },
@@ -78,12 +145,12 @@ const Results = () => {
                       { universidade: "UNIVERSIDADE D", c4: "Sim", c3: "Não", c2: "Não", c1: "Não", c0: "Não" },
                     ].map((row, idx) => (
                       <TableRow key={idx}>
-                        <TableCell className="font-medium">{row.universidade}</TableCell>
-                        <TableCell className={row.c4 === "Sim" ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>{row.c4}</TableCell>
-                        <TableCell className={row.c3 === "Sim" ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>{row.c3}</TableCell>
-                        <TableCell className={row.c2 === "Sim" ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>{row.c2}</TableCell>
-                        <TableCell className={row.c1 === "Sim" ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>{row.c1}</TableCell>
-                        <TableCell className={row.c0 === "Sim" ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>{row.c0}</TableCell>
+                        <TableCell className="bg-white font-medium">{row.universidade}</TableCell>
+                        <TableCell className={`bg-blue-50 ${row.c4 === "Sim" ? "text-green-700 font-semibold" : "text-red-700 font-semibold"}`}>{row.c4}</TableCell>
+                        <TableCell className={`bg-green-50 ${row.c3 === "Sim" ? "text-green-700 font-semibold" : "text-red-700 font-semibold"}`}>{row.c3}</TableCell>
+                        <TableCell className={`bg-yellow-50 ${row.c2 === "Sim" ? "text-green-700 font-semibold" : "text-red-700 font-semibold"}`}>{row.c2}</TableCell>
+                        <TableCell className={`bg-orange-50 ${row.c1 === "Sim" ? "text-green-700 font-semibold" : "text-red-700 font-semibold"}`}>{row.c1}</TableCell>
+                        <TableCell className={`bg-red-50 ${row.c0 === "Sim" ? "text-green-700 font-semibold" : "text-red-700 font-semibold"}`}>{row.c0}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -96,9 +163,10 @@ const Results = () => {
           {/* Tabela detalhada */}
           <Card className="mt-12 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-earth">Histórico das Compras da Agricultura Familiar</CardTitle>
+              <CardTitle className="text-earth">INDICADOR 1</CardTitle>
               <CardDescription>
-                Valores anuais por universidade, classe detectada e mensuração
+                Indicador da Mensuração Anual das Compras na expectativa da AF sobre as
+                UF Paraenses entre 2017 a 2024.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -270,6 +338,45 @@ const Results = () => {
           </Card>
         </div>
         */}
+        {/* Tabelas adicionais */}
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {extraTables.map((table, idx) => (
+            <Card key={idx} className="shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="text-nature">{table.title}</CardTitle>
+                <CardDescription>{table.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        {Object.keys(table.data[0]).map((header, hIdx) => (
+                          <TableHead key={hIdx} className="capitalize">
+                            {header}
+                          </TableHead>
+                        ))}
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {table.data.map((row, rIdx) => (
+                        <TableRow key={rIdx}>
+                          {Object.values(row).map((cell, cIdx) => (
+                            <TableCell key={cIdx}>{cell}</TableCell>
+                          ))}
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+                <p className="text-sm text-muted-foreground mt-4 italic text-center">
+                  {table.note}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
       </div>
     </section>
   );
