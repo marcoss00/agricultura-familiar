@@ -45,19 +45,40 @@ const Results = () => {
         { ANO: "2019", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
         { ANO: "2020", UFPA: "R$ 295.056,67", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 295.056,67" },
         { ANO: "2021", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+        { ANO: "2022", UFPA: "R$ 400.314,92", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 400.314,92" },
+        { ANO: "2023", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+        { ANO: "2024", UFPA: "R$ 732.217,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 732.217,00" },
+        { ANO: "-", UFPA: "-", UFRA: "-", UFOPA: "-", UNIFESSPA: "-", "Valor Total anual de compras da AF pelas UF Paraenses": "-" },
+        { ANO: "-", UFPA: "R$ 807.233,49", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "MONTANTE POR UF (no período analisado)" },
+        { ANO: "-", UFPA: "R$ 34.898,62", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 732.217,00" },
+        { ANO: "-", UFPA: "04", UFRA: "01", UFOPA: "0", UNIFESSPA: "0", "Valor Total anual de compras da AF pelas UF Paraenses": "QTDE DE COMPRAS POR UF (no período pesquisado)" },
+        { ANO: "-", UFPA: "", UFRA: "", UFOPA: "", UNIFESSPA: "", "Valor Total anual de compras da AF pelas UF Paraenses": "" },
+      ],
+      note: "Montante gasto pelas UF Paraenses com compras da AF (2017~2024): R$ 1.574.349,11"
+    },
+    {
+      title: "TABELA ANALITICA",
+      description: "da Aplicação de alguns Princípios de Estatística Descritiva Básica sobre a Ocorrência de Compras da Agricultura Familiar nas Universidades Federais Paraenses entre 2017 a 2024.",
+      data: [
+        { "Estatística Básica Aplicada": "Montante dos investimentos das UF Paraenses no mercado institucional de alimentos com as compras da A.F. no período estudado.", UFPA: "R$ 1.539.450,49", UFRA: "R$ 34.898,62", UFOPA: "0,00", UNIFESSPA: "0,00" },
+        { "Estatística Básica Aplicada": "Frequência Absoluta", UFPA: "R$ 1.539.450,49", UFRA: "R$ 34.898,62", UFOPA: "0,00", UNIFESSPA: "0,00" },
+        { "Estatística Básica Aplicada": "Frequência Relativa", UFPA: "0,9778", UFRA: "0,0222", UFOPA: "0,00", UNIFESSPA: "0,00" },
+        { "Estatística Básica Aplicada": "Frequência Relativa (%)", UFPA: "97,78%", UFRA: "2,22%", UFOPA: "0,00", UNIFESSPA: "0,00" },
+        { "Estatística Básica Aplicada": "Média aritmética", UFPA: "R$ 192.431,31", UFRA: "R$ 4.362,33", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
+        { "Estatística Básica Aplicada": "Valor Máximo", UFPA: "R$ 732.217,00", UFRA: "R$ 34.898,62", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
+        { "Estatística Básica Aplicada": "Valor Mínimo", UFPA: "R$0,00", UFRA: "R$0,00", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
+        { "Estatística Básica Aplicada": "Amplitude", UFPA: "R$ 732.217,00", UFRA: "R$ 34.898,62", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
       ],
       note: ""
     },
     {
-      title: "Tabela 2 — Distribuição dos Itens Comprados",
-      description: "Principais grupos alimentares adquiridos pelas universidades federais.",
+      title: "INDICADOR 2",
+      description: "Indicador do Quantitativo da Ocorrência de Compras da AF nas UF Paraenses entre 2017 a 2024.",
       data: [
-        { categoria: "Hortaliças", valor: "40%" },
-        { categoria: "Frutas", valor: "25%" },
-        { categoria: "Grãos", valor: "20%" },
-        { categoria: "Outros", valor: "15%" },
+        { "Análise Realizada": "Quantidade das ocorrências de compras da Agricultura Familiar realizadas pelas Universidades Federais Paraenses, durante o período analisado.", UFPA: "03", UFRA: "01", UFOPA: "0", UNIFESSPA: "0" },
+        { "Análise Realizada": "Percentual da Ocorrência Anual de compras da Agricultura Familiar nas Universidades Federais Paraenses, considerando o período analisado.", UFPA: "50%", UFRA: "12,50%", UFOPA: "0%", UNIFESSPA: "0%" },
       ],
-      note: "A predominância de hortaliças reflete a produção regional e sazonal."
+      note: ""
     },
     // ...adicione mais 3 tabelas aqui
   ];
