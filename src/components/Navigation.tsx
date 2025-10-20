@@ -7,9 +7,9 @@ const Navigation = () => {
 
   const navItems = [
     { label: "Início", href: "#home" },
-    { label: "IPCAF", href: "#ipcaf" },
-    { label: "Resultados", href: "#results" },
-    { label: "Conscientização", href: "#awareness" },
+    { label: "A Origem do IPCAF", href: "#ipcaf" },
+    { label: "Os Resultados", href: "#results" },
+    { label: "A Conscientização", href: "#awareness" },
     { label: "Sobre a Pesquisa", href: "#about" },
     { label: "Contato", href: "#contact" },
   ];

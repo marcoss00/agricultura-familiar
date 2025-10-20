@@ -35,8 +35,8 @@ const Hero = () => {
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Analisando a construção de um índice de potencialidade das compras da Agricultura Familiar 
-            nas Universidades Federais Paraenses.
+            Conheça a construção de um Índice de Compras da Agricultura Familiar nas Universidades
+            Federais Paraenses.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -46,6 +46,15 @@ const Hero = () => {
               className="bg-gradient-to-r from-nature to-earth hover:from-nature-light hover:to-earth-light text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               Conhecer os Resultados
+            </Button>
+
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => document.querySelector("#awareness")?.scrollIntoView({ behavior: "smooth" })}
+              className="border-2 border-nature text-nature hover:bg-nature hover:text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300"
+            >
+              Por Que Isso Importa?
             </Button>
             
             <Button
@@ -65,7 +74,7 @@ const Hero = () => {
             </div>
             <div className="text-center lg:text-left">
               <div className="text-3xl font-bold text-earth mb-2">4</div>
-              <div className="text-muted-foreground">Universidades Federais</div>
+              <div className="text-muted-foreground">Universidades Federais analisadas</div>
             </div>
             <div className="text-center lg:text-left">
               <div className="text-3xl font-bold text-nature mb-2">R$ 1,57M+</div>

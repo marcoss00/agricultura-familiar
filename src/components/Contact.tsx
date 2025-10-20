@@ -27,7 +27,7 @@ const Contact = () => {
         title: "Mensagem enviada com sucesso!",
         description: "Obrigado pelo seu interesse. Entrarei em contato em breve.",
       });
-      
+
       setFormData({
         name: "",
         email: "",
@@ -52,10 +52,7 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
             Contato
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Interessado em colaborar, conhecer mais detalhes da pesquisa ou compartilhar experiências? 
-            Vamos conversar sobre como fortalecer a agricultura familiar nas Universidade Federais.
-          </p>
+
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -66,9 +63,8 @@ const Contact = () => {
                 Vamos Dialogar
               </h3>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Esta pesquisa é um convite ao diálogo. Se você é gestor universitário, 
-                agricultor familiar, pesquisador ou simplesmente tem interesse no tema, 
-                sua contribuição é muito bem-vinda.
+                Esta pesquisa é um convite para refletir. Se você é gestor, agricultor familiar, pesquisador ou simplesmente
+                tem interesse no tema, sua contribuição é bem-vinda!
               </p>
             </div>
 
@@ -81,7 +77,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground">Email</h4>
-                      <p className="text-muted-foreground">xlouzada@live.com</p>
+                      <p className="text-muted-foreground">edsonlouzadajr@gmail.com</p>
                     </div>
                   </div>
                 </CardContent>
@@ -125,7 +121,6 @@ const Contact = () => {
               <ul className="space-y-2 text-muted-foreground">
                 <li>• Parcerias para futuras pesquisas</li>
                 <li>• Implementação de projetos piloto</li>
-                <li>• Consultoria para universidades</li>
                 <li>• Capacitação de agricultores familiares</li>
                 <li>• Desenvolvimento de políticas públicas</li>
               </ul>

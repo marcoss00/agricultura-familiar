@@ -8,7 +8,7 @@ const Footer = () => {
               Universidades Federais & Agricultura Familiar
             </h3>
             <p className="text-muted opacity-80 leading-relaxed">
-              Pesquisa dedicada ao fortalecimento das relações entre universidade federais e agricultura familiar.
+              Pesquisa dedicada ao fortalecimento das relações entre Universidade Federais e Agricultura Familiar.
             </p>
           </div>
           
@@ -28,7 +28,7 @@ const Footer = () => {
                   onClick={() => document.querySelector("#ipcaf")?.scrollIntoView({ behavior: "smooth" })}
                   className="opacity-80 hover:opacity-100 transition-opacity"
                 >
-                  IPCAF
+                  A Origem do IPCAF
                 </button>
               </li>
               <li>
@@ -36,7 +36,7 @@ const Footer = () => {
                   onClick={() => document.querySelector("#results")?.scrollIntoView({ behavior: "smooth" })}
                   className="opacity-80 hover:opacity-100 transition-opacity"
                 >
-                  Resultados
+                  Os Resultados
                 </button>
               </li>
               <li>
@@ -44,7 +44,7 @@ const Footer = () => {
                   onClick={() => document.querySelector("#awareness")?.scrollIntoView({ behavior: "smooth" })}
                   className="opacity-80 hover:opacity-100 transition-opacity"
                 >
-                  Conscientização
+                  A Conscientização
                 </button>
               </li>
               <li>
@@ -61,7 +61,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contato</h4>
             <ul className="space-y-2 text-sm opacity-80">
-              <li>xlouzada@live.com</li>
+              <li>edsonlouzadajr@gmail.com</li>
               <li>Belém, Pará, Brasil</li>
             </ul>
           </div>

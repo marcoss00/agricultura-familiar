@@ -40,7 +40,7 @@ const Awareness = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
           {benefits.map((benefit, index) => (
             <Card key={index} className="text-center shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-105">
               <CardContent className="pt-8 pb-6">
@@ -70,21 +70,32 @@ const Awareness = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-card p-6 rounded-xl shadow-md">
+
+            <a
+              href="https://drive.google.com/file/d/12Kq7j8IOWHpjcom0zR10yG-P39shWFPO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-card p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 block"
+            >
               <h4 className="text-xl font-semibold mb-3 text-nature">Para Universidades Federais</h4>
               <p className="text-muted-foreground">
                 Conheça a Nota Técnica e Minuta de Resolução Normativa para sua Instituição como
                 ferramentas de implementação efetiva da política.
               </p>
-            </div>
+            </a>
 
-            <div className="bg-card p-6 rounded-xl shadow-md">
+            <a
+              href="https://drive.google.com/file/d/1q1R9PQGTduCY_k6rQwuWePl7VWicwAyk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-card p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 block"
+            >
               <h4 className="text-xl font-semibold mb-3 text-earth">Para Agricultores Familiares</h4>
               <p className="text-muted-foreground">
                 Conheça o Guia Explicativo e de Orientação para os grupos de agricultores como forma de
                 acesso à informação e participação ativa do mercado institucional de alimentos.
               </p>
-            </div>
+            </a>
           </div>
         </div>
       </div>

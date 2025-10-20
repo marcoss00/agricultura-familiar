@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, Legend } from "recharts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 
 const Results = () => {
@@ -80,7 +80,27 @@ const Results = () => {
       ],
       note: ""
     },
+    {
+      title: "ÍNDICE",
+      description: "– MATRIZ de Classificação da Potencialidade das UF Paraenses sobre a compra de alimentos da AF.",
+      data: [
+        { "Categoria.": "Qu", UFPA: "03", UFRA: "01", UFOPA: "0", UNIFESSPA: "0" },
+        { "Análise Realizada": "Percentual da Ocorrência Anual de compras da Agricultura Familiar nas Universidades Federais Paraenses, considerando o período analisado.", UFPA: "50%", UFRA: "12,50%", UFOPA: "0%", UNIFESSPA: "0%" },
+      ],
+      note: ""
+    },
     // ...adicione mais 3 tabelas aqui
+  ];
+
+  const comparativeData = [
+    { ano: "2017", UFPA: 111861.90, UFRA: 0, UFOPA: 0, UNIFESSPA: 0 },
+    { ano: "2018", UFPA: 0, UFRA: 34898.62, UFOPA: 0, UNIFESSPA: 0 },
+    { ano: "2019", UFPA: 0, UFRA: 0, UFOPA: 0, UNIFESSPA: 0 },
+    { ano: "2020", UFPA: 295056.67, UFRA: 0, UFOPA: 0, UNIFESSPA: 0 },
+    { ano: "2021", UFPA: 0, UFRA: 0, UFOPA: 0, UNIFESSPA: 0 },
+    { ano: "2022", UFPA: 400314.92, UFRA: 0, UFOPA: 0, UNIFESSPA: 0 },
+    { ano: "2023", UFPA: 0, UFRA: 0, UFOPA: 0, UNIFESSPA: 0 },
+    { ano: "2024", UFPA: 732217.00, UFRA: 0, UFOPA: 0, UNIFESSPA: 0 },
   ];
 
 
@@ -89,17 +109,16 @@ const Results = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
-            Resultados da Pesquisa
+            Os Resultados do IPCAF
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A pesquisa se concentrou nas Universidades Federais Paraenses, quais sejam: a
-            Universidade Federal do Pará (UFPA), a Universidade Federal do Oeste do Pará (UFOPA),
-            a Universidade Federal do Sul e Sudeste do Pará (UNIFESSPA) e a Universidade Federal
-            Rural da Amazônia (UFRA). A Origem dos dados primários são do site Painel de Compras
-            do Governo Federal (administrado pelo Ministério da Gestão e da Inovação em Serviços
-            Públicos - MGI), uma fonte de dados primária oficial e transparente das contratações
-            públicas da esfera federal. O período temporal é de 2017 até 2024. O IPCAF foi
-            construído a partir de indicadores, conforme passamos a expor:
+            O Índice de Potencialidade das Compras da Agricultura Familiar (IPCAF) usou dados
+            primários do Painel de Compras do Governo Federal do período de 2017 até 2024 e
+            permitiu acompanhar a ocorrência de compras da Agricultura Familiar (AF) e seus
+            valores por Universidades Federais (UF) Paraenses: a Universidade Federal do Pará
+            (UFPA), a Universidade Federal do Oeste do Pará (UFOPA), a Universidade Federal do Sul
+            e Sudeste do Pará (UNIFESSPA) e a Universidade Federal Rural da Amazônia (UFRA). O
+            IPCAF foi construído a partir de indicadores, conforme passamos a expor:
           </p>
         </div>
 
@@ -175,6 +194,7 @@ const Results = () => {
                       </TableRow>
                     ))}
                   </TableBody>
+
                 </Table>
               </div>
             </CardContent>
@@ -261,6 +281,115 @@ const Results = () => {
                   />
                 </LineChart>
               </ResponsiveContainer>
+            </CardContent>
+          </Card>
+
+          {/* Gráfico de Barras Agrupadas - UFPA x UFRA x UFOPA x UNIFESSPA */}
+          <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardHeader>
+              <CardTitle className="text-nature">
+                Comparativo das Compras por Universidade (2017–2024)
+              </CardTitle>
+              <CardDescription>Valores anuais em reais (R$)</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={comparativeData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis dataKey="ano" stroke="hsl(var(--muted-foreground))" />
+                  <YAxis
+                    stroke="hsl(var(--muted-foreground))"
+                    tickFormatter={(value) => `R$${(value / 1000).toLocaleString()}k`}
+                  />
+                  <Tooltip
+                    formatter={(value) => [`R$ ${value.toLocaleString()}`, "Valor"]}
+                    contentStyle={{
+                      backgroundColor: "hsl(var(--card))",
+                      border: "1px solid hsl(var(--border))"
+                    }}
+                  />
+                  <Bar dataKey="UFPA" fill="#3b82f6" name="UFPA" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="UFRA" fill="#ef4444" name="UFRA" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="UFOPA" fill="#10b981" name="UFOPA" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="UNIFESSPA" fill="#a855f7" name="UNIFESSPA" radius={[4, 4, 0, 0]} />
+                  <Legend
+                    verticalAlign="bottom"
+                    height={36}
+                    wrapperStyle={{
+                      paddingTop: "10px",
+                      fontSize: "14px",
+                      color: "hsl(var(--muted-foreground))"
+                    }}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+
+          {/* Tabela de Indicadores de Potencialidade */}
+          <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardHeader>
+              <CardTitle className="text-nature">Indicadores de Potencialidade</CardTitle>
+              <CardDescription>MATRIZ de Classificação da Potencialidade das UF Paraenses sobre a compra de alimentos da AF.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto rounded-xl border border-border">
+                <table className="min-w-full text-sm text-center border-collapse">
+                  <thead>
+                    <tr className="bg-muted text-foreground font-semibold">
+                      <th className="border border-border px-4 py-2">Categoria</th>
+                      <th className="border border-border px-4 py-2">Indicador de Potencialidade</th>
+                      <th className="border border-border px-4 py-2">Variação %</th>
+                      <th className="border border-border px-4 py-2">Escala do IPCAF</th>
+                      <th className="border border-border px-4 py-2">Nível</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="bg-sky-400 text-white font-semibold">
+                      <td className="border border-border px-4 py-2">Primeira</td>
+                      <td className="border border-border px-4 py-2">Excelente</td>
+                      <td className="border border-border px-4 py-2">81~99%</td>
+                      <td className="border border-border px-4 py-2 bg-sky-400"></td>
+                      <td className="border border-border px-4 py-2"></td>
+                    </tr>
+                    <tr className="bg-lime-400 text-white font-semibold">
+                      <td className="border border-border px-4 py-2">Segunda</td>
+                      <td className="border border-border px-4 py-2">Ótimo</td>
+                      <td className="border border-border px-4 py-2">61~80%</td>
+                      <td className="border border-border px-4 py-2 bg-lime-400"></td>
+                      <td className="border border-border px-4 py-2"></td>
+                    </tr>
+                    <tr className="bg-yellow-300 font-semibold">
+                      <td className="border border-border px-4 py-2">Terceira</td>
+                      <td className="border border-border px-4 py-2">Moderado</td>
+                      <td className="border border-border px-4 py-2">41~60%</td>
+                      <td className="border border-border px-4 py-2 bg-yellow-300"></td>
+                      <td className="border border-border px-4 py-2"></td>
+                    </tr>
+                    <tr className="bg-orange-400 text-white font-semibold">
+                      <td className="border border-border px-4 py-2">Quarta</td>
+                      <td className="border border-border px-4 py-2">Baixo</td>
+                      <td className="border border-border px-4 py-2">21~40%</td>
+                      <td className="border border-border px-4 py-2 bg-orange-400"></td>
+                      <td className="border border-border px-4 py-2"></td>
+                    </tr>
+                    <tr className="bg-red-500 text-white font-semibold">
+                      <td className="border border-border px-4 py-2">Quinta</td>
+                      <td className="border border-border px-4 py-2">Insuficiente</td>
+                      <td className="border border-border px-4 py-2">01~20%</td>
+                      <td className="border border-border px-4 py-2 bg-red-500"></td>
+                      <td className="border border-border px-4 py-2"></td>
+                    </tr>
+                    <tr className="bg-red-800 text-white font-semibold">
+                      <td className="border border-border px-4 py-2">Sexta</td>
+                      <td className="border border-border px-4 py-2">Inexistente</td>
+                      <td className="border border-border px-4 py-2">0%</td>
+                      <td className="border border-border px-4 py-2 bg-red-800"></td>
+                      <td className="border border-border px-4 py-2 text-lg">○○</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </CardContent>
           </Card>
 
