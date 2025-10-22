@@ -1,6 +1,247 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, Target, Users, BarChart3 } from "lucide-react";
 import mapaMental from "@/assets/mapa_mental.png";
+import {
+  BarChart,
+  Cell,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  LabelList,
+  CartesianGrid,
+  Legend
+} from "recharts";
+import React from "react";
+
+export const TabelaModelosGestao: React.FC = () => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 mb-10 overflow-x-auto">
+      <h4 className="text-center text-lg font-semibold mb-6 text-foreground">
+        Modelos de Gestão dos Restaurantes Universitários das Universidades Federais Paraenses
+      </h4>
+
+      <table className="min-w-full border border-gray-300 text-sm text-left">
+        <thead>
+          <tr className="bg-blue-100 text-foreground">
+            <th className="border border-gray-300 px-4 py-3 font-semibold text-center align-middle w-1/5">
+              Universidades Federais Paraenses
+            </th>
+            <th className="border border-gray-300 px-4 py-3 font-semibold text-center align-middle w-1/4">
+              Modelo de Gestão Adotado
+            </th>
+            <th className="border border-gray-300 px-4 py-3 font-semibold text-center align-middle w-2/4">
+              Justificativa para Adoção do Modelo
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="hover:bg-gray-50">
+            <td className="border border-gray-300 px-4 py-3 text-center font-semibold">UFPA</td>
+            <td className="border border-gray-300 px-4 py-3 text-center">
+              Misto (Gestão própria com terceirização parcial de mão de obra)
+            </td>
+            <td className="border border-gray-300 px-4 py-3">
+              Combina com a terceirização de serviços operacionais, com o controle estratégico da
+              universidade sobre o planejamento e a fiscalização.
+            </td>
+          </tr>
+
+          <tr className="hover:bg-gray-50">
+            <td className="border border-gray-300 px-4 py-3 text-center font-semibold">UFRA</td>
+            <td className="border border-gray-300 px-4 py-3 text-center">
+              Terceirizado (Concessão), a partir de 2021.
+            </td>
+            <td className="border border-gray-300 px-4 py-3">
+              Possibilita ampliar o atendimento, diversificar o cardápio e reduzir os custos com pessoal,
+              manutenção e administração.
+            </td>
+          </tr>
+
+          <tr className="hover:bg-gray-50">
+            <td className="border border-gray-300 px-4 py-3 text-center font-semibold">UFOPA</td>
+            <td className="border border-gray-300 px-4 py-3 text-center">
+              Terceirizado (Concessão)
+            </td>
+            <td className="border border-gray-300 px-4 py-3">
+              Otimiza os recursos públicos ao transferir os riscos operacionais e financeiros para empresa
+              especializada, garantindo maior agilidade, flexibilidade e expertise na gestão.
+            </td>
+          </tr>
+
+          <tr className="hover:bg-gray-50">
+            <td className="border border-gray-300 px-4 py-3 text-center font-semibold">UNIFESSPA</td>
+            <td className="border border-gray-300 px-4 py-3 text-center">
+              Terceirizado (Concessão)
+            </td>
+            <td className="border border-gray-300 px-4 py-3">
+              Relação custo-benefício, em virtude dos custos operacionais e pelo limitado número de
+              servidores no RU.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+
+const dataEntraves = [
+  { name: "LOGÍSTICA E CUSTOS", nivel: "Média", cor: "#FFD700", valor: 2 },
+  { name: "BUROCRACIA DOS EDITAIS", nivel: "Média", cor: "#FFD700", valor: 2 },
+  { name: "DIVULGAÇÃO INSUFICIENTE", nivel: "Média", cor: "#FFD700", valor: 2 },
+  { name: "CONCORRÊNCIA COM 'FAKES'/INFORMAIS", nivel: "Alta", cor: "#FF4C4C", valor: 3 },
+  { name: "IRREGULARIDADE E SAZONALIDADE", nivel: "Alta", cor: "#FF4C4C", valor: 3 },
+];
+
+const dataFrequencia = [
+  { categoria: "Preços praticados", valor: 9 },
+  { categoria: "Burocracia/ editais/ regras", valor: 9 },
+  { categoria: "Renda/retorno financeiro", valor: 8 },
+  { categoria: "Produtos/ portfólio", valor: 5 },
+  { categoria: "Quantidade/ demanda", valor: 3 },
+  { categoria: "Capacidade/ apoio institucional", valor: 2 },
+  { categoria: "Concorrência desleal/ irregulares", valor: 8 },
+  { categoria: "Logística/ transporte", valor: 4 },
+  { categoria: "Gênero/ autonomia feminina", valor: 3 },
+  { categoria: "Planejamento/ regularidade", valor: 4 },
+  { categoria: "Sazonalidade", valor: 1 },
+];
+
+const GraficoEntraves = () => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 mb-10">
+      <h4 className="text-center text-lg font-semibold mb-6 text-foreground">
+        Entraves por nível de importância na execução do PAA-CI
+      </h4>
+
+      <div className="w-full h-80">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={dataEntraves}
+            layout="vertical"
+            margin={{ top: 10, right: 50, left: 0, bottom: 0 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.1} />
+            <XAxis type="number" hide />
+            <YAxis
+              type="category"
+              dataKey="name"
+              tick={{ fontSize: 13, fill: "#333" }}
+              width={260}
+            />
+            <Tooltip
+              formatter={(value: number, name: string, props: any) => [
+                props.payload.nivel,
+                "Nível de importância",
+              ]}
+            />
+            <Bar dataKey="valor" radius={[0, 6, 6, 0]} barSize={28}>
+              <LabelList
+                dataKey="nivel"
+                position="right"
+                style={{ fill: "#000", fontWeight: "bold" }}
+              />
+              {dataEntraves.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.cor} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
+
+export const GraficoRefeicoesDiarias: React.FC = () => {
+  const data = [
+    { universidade: "UFPA", refeicoes: 6000, cor: "#FFA54C" },
+    { universidade: "UFRA", refeicoes: 1000, cor: "#3CB8B8" },
+    { universidade: "UFOPA", refeicoes: 865, cor: "#9370DB" },
+    { universidade: "UNIFESSPA*", refeicoes: 412, cor: "#A0522D" },
+  ];
+
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 mb-10">
+      <h4 className="text-center text-lg font-semibold mb-4 text-foreground">
+        Quantidade média de fornecimento de refeições diárias nas Universidades Federais Paraenses analisadas
+      </h4>
+
+      <div className="w-full h-80">
+        <ResponsiveContainer>
+          <BarChart
+            data={data}
+            margin={{ top: 30, right: 30, left: 20, bottom: 20 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="universidade" /> {/* label={{ value: "Refeições Diárias", position: "bottom", offset: 10 }} */}
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="refeicoes" name="Refeições Diárias">
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.cor} />
+              ))}
+              <LabelList dataKey="refeicoes" position="top" />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      <p className="text-sm text-right mt-2 italic text-foreground">
+        * Fornece somente almoço.
+      </p>
+    </div>
+  );
+};
+
+export const GraficoFrequencia: React.FC = () => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 mb-10">
+      <h4 className="text-center text-lg font-semibold mb-6 text-foreground">
+        Frequência de menções por categoria (todas as organizações)
+      </h4>
+
+      <div className="w-full h-96">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={dataFrequencia}
+            margin={{ top: 10, right: 30, left: 10, bottom: 80 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
+            <XAxis
+              dataKey="categoria"
+              angle={-45}
+              textAnchor="end"
+              interval={0}
+              height={80}
+              tick={{ fontSize: 12, fill: "#222" }}
+            />
+            <YAxis
+              tick={{ fontSize: 12, fill: "#222" }}
+              domain={[0, 10]}
+              label={{
+                value: "",
+                angle: -90,
+                position: "insideLeft",
+              }}
+            />
+            <Tooltip cursor={{ fill: "rgba(0,0,0,0.05)" }} />
+            <Legend verticalAlign="bottom" height={36} />
+            <Bar
+              dataKey="valor"
+              name="Categorias"
+              fill="#FFB300"
+              barSize={35}
+              radius={[4, 4, 0, 0]}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
 
 const About = () => {
   const objectives = [
@@ -81,6 +322,18 @@ const About = () => {
               Avaliou-se o impacto da demanda das universidades federais na organização social, planejamento
               produtivo e renda dos agricultores familiares, identificando os principais entraves operacionais
               (logística, burocracia) sob a ótica dos atores envolvidos.
+            </p>
+            <GraficoEntraves />
+            <GraficoFrequencia />
+            <TabelaModelosGestao />
+            <GraficoRefeicoesDiarias />
+            <h3 className="text-3xl font-bold mb-6 text-foreground bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
+              Sobre a perspectiva das Universidades Federais.
+            </h3>
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Analisou-se- a influência dos modelos de gestão (misto e terceirizado) e do arcabouço normativo das
+              compras institucionais (PAA-CI) na efetividade das aquisições da agricultura familiar pelas
+              Universidades Federais Paraenses.
             </p>
             <h3 className="text-3xl font-bold mb-6 text-foreground bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
               Quer entender melhor, conheça a Tese

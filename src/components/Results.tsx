@@ -2,6 +2,52 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, Legend } from "recharts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 
+interface TableProps {
+  table: {
+    title: string;
+    description: string;
+    data: Record<string, string>[];
+    note?: string;
+  };
+}
+
+export const TabelaCard: React.FC<TableProps> = ({ table }) => (
+  <Card className="shadow-lg hover:shadow-xl transition-all duration-300">
+    <CardHeader>
+      <CardTitle className="text-nature">{table.title}</CardTitle>
+      <CardDescription>{table.description}</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              {Object.keys(table.data[0]).map((header, hIdx) => (
+                <TableHead key={hIdx} className="capitalize">
+                  {header}
+                </TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {table.data.map((row, rIdx) => (
+              <TableRow key={rIdx}>
+                {Object.values(row).map((cell, cIdx) => (
+                  <TableCell key={cIdx}>{cell}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+      {table.note && (
+        <p className="text-sm text-muted-foreground mt-4 italic text-center">{table.note}</p>
+      )}
+    </CardContent>
+  </Card>
+);
+
+
 const Results = () => {
   // Dados simulados para demonstração
   const yearlyData = [
@@ -33,63 +79,6 @@ const Results = () => {
     { ano: "2022", ufpa: "R$400.314,92", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 1, mensuracao: "BAIXO" },
     { ano: "2023", ufpa: "R$0,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 0, mensuracao: "INEXISTENTE" },
     { ano: "2024", ufpa: "R$732.217,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 1, mensuracao: "BAIXO" },
-  ]
-
-  const extraTables = [
-    {
-      title: "TABELA dos Valores Anuais das Compras da AF nas UF Paraenses, entre 2017 a 2024",
-      description: "",
-      data: [
-        { ANO: "2017", UFPA: "R$ 111.861,90", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 111.861,90" },
-        { ANO: "2018", UFPA: "R$ 0,00", UFRA: "R$ 34.898,62", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 34.898,62" },
-        { ANO: "2019", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
-        { ANO: "2020", UFPA: "R$ 295.056,67", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 295.056,67" },
-        { ANO: "2021", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
-        { ANO: "2022", UFPA: "R$ 400.314,92", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 400.314,92" },
-        { ANO: "2023", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
-        { ANO: "2024", UFPA: "R$ 732.217,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 732.217,00" },
-        { ANO: "-", UFPA: "-", UFRA: "-", UFOPA: "-", UNIFESSPA: "-", "Valor Total anual de compras da AF pelas UF Paraenses": "-" },
-        { ANO: "-", UFPA: "R$ 807.233,49", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "MONTANTE POR UF (no período analisado)" },
-        { ANO: "-", UFPA: "R$ 34.898,62", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 732.217,00" },
-        { ANO: "-", UFPA: "04", UFRA: "01", UFOPA: "0", UNIFESSPA: "0", "Valor Total anual de compras da AF pelas UF Paraenses": "QTDE DE COMPRAS POR UF (no período pesquisado)" },
-        { ANO: "-", UFPA: "", UFRA: "", UFOPA: "", UNIFESSPA: "", "Valor Total anual de compras da AF pelas UF Paraenses": "" },
-      ],
-      note: "Montante gasto pelas UF Paraenses com compras da AF (2017~2024): R$ 1.574.349,11"
-    },
-    {
-      title: "TABELA ANALITICA",
-      description: "da Aplicação de alguns Princípios de Estatística Descritiva Básica sobre a Ocorrência de Compras da Agricultura Familiar nas Universidades Federais Paraenses entre 2017 a 2024.",
-      data: [
-        { "Estatística Básica Aplicada": "Montante dos investimentos das UF Paraenses no mercado institucional de alimentos com as compras da A.F. no período estudado.", UFPA: "R$ 1.539.450,49", UFRA: "R$ 34.898,62", UFOPA: "0,00", UNIFESSPA: "0,00" },
-        { "Estatística Básica Aplicada": "Frequência Absoluta", UFPA: "R$ 1.539.450,49", UFRA: "R$ 34.898,62", UFOPA: "0,00", UNIFESSPA: "0,00" },
-        { "Estatística Básica Aplicada": "Frequência Relativa", UFPA: "0,9778", UFRA: "0,0222", UFOPA: "0,00", UNIFESSPA: "0,00" },
-        { "Estatística Básica Aplicada": "Frequência Relativa (%)", UFPA: "97,78%", UFRA: "2,22%", UFOPA: "0,00", UNIFESSPA: "0,00" },
-        { "Estatística Básica Aplicada": "Média aritmética", UFPA: "R$ 192.431,31", UFRA: "R$ 4.362,33", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
-        { "Estatística Básica Aplicada": "Valor Máximo", UFPA: "R$ 732.217,00", UFRA: "R$ 34.898,62", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
-        { "Estatística Básica Aplicada": "Valor Mínimo", UFPA: "R$0,00", UFRA: "R$0,00", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
-        { "Estatística Básica Aplicada": "Amplitude", UFPA: "R$ 732.217,00", UFRA: "R$ 34.898,62", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
-      ],
-      note: ""
-    },
-    {
-      title: "INDICADOR 2",
-      description: "Indicador do Quantitativo da Ocorrência de Compras da AF nas UF Paraenses entre 2017 a 2024.",
-      data: [
-        { "Análise Realizada": "Quantidade das ocorrências de compras da Agricultura Familiar realizadas pelas Universidades Federais Paraenses, durante o período analisado.", UFPA: "03", UFRA: "01", UFOPA: "0", UNIFESSPA: "0" },
-        { "Análise Realizada": "Percentual da Ocorrência Anual de compras da Agricultura Familiar nas Universidades Federais Paraenses, considerando o período analisado.", UFPA: "50%", UFRA: "12,50%", UFOPA: "0%", UNIFESSPA: "0%" },
-      ],
-      note: ""
-    },
-    {
-      title: "ÍNDICE",
-      description: "– MATRIZ de Classificação da Potencialidade das UF Paraenses sobre a compra de alimentos da AF.",
-      data: [
-        { "Categoria.": "Qu", UFPA: "03", UFRA: "01", UFOPA: "0", UNIFESSPA: "0" },
-        { "Análise Realizada": "Percentual da Ocorrência Anual de compras da Agricultura Familiar nas Universidades Federais Paraenses, considerando o período analisado.", UFPA: "50%", UFRA: "12,50%", UFOPA: "0%", UNIFESSPA: "0%" },
-      ],
-      note: ""
-    },
-    // ...adicione mais 3 tabelas aqui
   ];
 
   const comparativeData = [
@@ -102,6 +91,73 @@ const Results = () => {
     { ano: "2023", UFPA: 0, UFRA: 0, UFOPA: 0, UNIFESSPA: 0 },
     { ano: "2024", UFPA: 732217.00, UFRA: 0, UFOPA: 0, UNIFESSPA: 0 },
   ];
+
+  // TABELA 1
+  const tabelaValoresAnuais = {
+    title: "TABELA 1",
+    description: "Dados primarios levantados dos Valores Anuais das Compras da AF nas UF Paraenses, entre 2017 a 2024.",
+    data: [
+      { ANO: "2017", UFPA: "R$ 111.861,90", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 111.861,90" },
+      { ANO: "2018", UFPA: "R$ 0,00", UFRA: "R$ 34.898,62", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 34.898,62" },
+      { ANO: "2019", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+      { ANO: "2020", UFPA: "R$ 295.056,67", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 295.056,67" },
+      { ANO: "2021", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+      { ANO: "2022", UFPA: "R$ 400.314,92", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 400.314,92" },
+      { ANO: "2023", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+      { ANO: "2024", UFPA: "R$ 732.217,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 732.217,00" },
+      { ANO: "-", UFPA: "-", UFRA: "-", UFOPA: "-", UNIFESSPA: "-", "Valor Total anual de compras da AF pelas UF Paraenses": "-" },
+      { ANO: "-", UFPA: "R$ 807.233,49", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "MONTANTE POR UF (no período analisado)" },
+      { ANO: "-", UFPA: "R$ 34.898,62", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 732.217,00" },
+      { ANO: "-", UFPA: "04", UFRA: "01", UFOPA: "0", UNIFESSPA: "0", "Valor Total anual de compras da AF pelas UF Paraenses": "QTDE DE COMPRAS POR UF (no período pesquisado)" },
+      { ANO: "-", UFPA: "", UFRA: "", UFOPA: "", UNIFESSPA: "", "Valor Total anual de compras da AF pelas UF Paraenses": "" },
+    ],
+    note: "Montante gasto pelas UF Paraenses com compras da AF (2017~2024): R$ 1.574.349,11",
+  };
+
+  // TABELA 2
+  const tabelaAnalitica = {
+    title: "TABELA 2",
+    description:
+      "Aplicação de Princípios de Estatística Básica sobre a Ocorrência de Compras da AF nas UF Paraenses entre 2017 a 2024.",
+    data: [
+      { "Estatística Básica Aplicada": "Montante dos investimentos das UF Paraenses no mercado institucional de alimentos com as compras da A.F. no período estudado.", UFPA: "R$ 1.539.450,49", UFRA: "R$ 34.898,62", UFOPA: "0,00", UNIFESSPA: "0,00" },
+      { "Estatística Básica Aplicada": "Frequência Absoluta", UFPA: "R$ 1.539.450,49", UFRA: "R$ 34.898,62", UFOPA: "0,00", UNIFESSPA: "0,00" },
+      { "Estatística Básica Aplicada": "Frequência Relativa", UFPA: "0,9778", UFRA: "0,0222", UFOPA: "0,00", UNIFESSPA: "0,00" },
+      { "Estatística Básica Aplicada": "Frequência Relativa (%)", UFPA: "97,78%", UFRA: "2,22%", UFOPA: "0,00", UNIFESSPA: "0,00" },
+      { "Estatística Básica Aplicada": "Média aritmética", UFPA: "R$ 192.431,31", UFRA: "R$ 4.362,33", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
+      { "Estatística Básica Aplicada": "Valor Máximo", UFPA: "R$ 732.217,00", UFRA: "R$ 34.898,62", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
+      { "Estatística Básica Aplicada": "Valor Mínimo", UFPA: "R$0,00", UFRA: "R$0,00", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
+      { "Estatística Básica Aplicada": "Amplitude", UFPA: "R$ 732.217,00", UFRA: "R$ 34.898,62", UFOPA: "R$0,00", UNIFESSPA: "R$0,00" },
+    ],
+    note: "",
+  };
+
+  // TABELA 3
+  const indicador2 = {
+    title: "INDICADOR II",
+    description:
+      "Indicador do Quantitativo da Ocorrência de Compras da AF nas UF Paraenses entre 2017 a 2024.",
+    data: [
+      { "Análise Realizada": "Quantidade das ocorrências de compras da Agricultura Familiar realizadas pelas Universidades Federais Paraenses, durante o período analisado.", UFPA: "03", UFRA: "01", UFOPA: "0", UNIFESSPA: "0" },
+      { "Análise Realizada": "Percentual da Ocorrência Anual de compras da Agricultura Familiar nas Universidades Federais Paraenses, considerando o período analisado.", UFPA: "50%", UFRA: "12,50%", UFOPA: "0%", UNIFESSPA: "0%" },
+    ],
+    note: "",
+  };
+
+  // TABELA 4
+  const indiceMatriz = {
+    title: "INDICADOR II",
+    description:
+      "Classificação da Potencialidade Anual das quatro Universidades Federais Paraenses em relação às compras da Agricultura Familiar.",
+    data: [
+      { uf: "UFPA", percentual: "50%", categoria: "Terceira", classificacao: "Moderado" },
+      { uf: "UFRA", percentual: "12,5%", categoria: "Quinta", classificacao: "Insuficiente" },
+      { uf: "UFOPA", percentual: "0%", categoria: "Sexta", classificacao: "Inexistente" },
+      { uf: "UNIFESSPA", percentual: "0%", categoria: "Sexta", classificacao: "Inexistente" },
+    ],
+  };
+
+
 
 
   return (
@@ -122,14 +178,19 @@ const Results = () => {
           </p>
         </div>
 
+        <div className="mb-12">
+          <TabelaCard table={tabelaValoresAnuais} />
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+
           {/* Tabela de Classes por Universidade */}
           <Card className="mt-12 shadow-lg">
             <CardHeader>
               <CardTitle className="text-nature">INDICADOR 1</CardTitle>
               <CardDescription>
-                MATRIZ do Indicador de Ocorrência Anual de Compras da AF nas UF
-                Paraenses entre 2017 a 2024.
+                Matriz para construção do Indicador de Ocorrência Anual de Compras da
+                AF nas UF Paraenses entre 2017 a 2024.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -206,8 +267,8 @@ const Results = () => {
             <CardHeader>
               <CardTitle className="text-earth">INDICADOR 1</CardTitle>
               <CardDescription>
-                Indicador da Mensuração Anual das Compras na expectativa da AF sobre as
-                UF Paraenses entre 2017 a 2024.
+                Indicador da Mensuração Anual das Compras na expectativa da AF sobre
+                as UF Paraenses entre 2017 a 2024.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -252,7 +313,7 @@ const Results = () => {
             </CardContent>
           </Card>
 
-          {/* Evolução dos Valores */}
+          {/*
           <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
               <CardTitle className="text-nature">Evolução dos Valores de Compra</CardTitle>
@@ -283,14 +344,16 @@ const Results = () => {
               </ResponsiveContainer>
             </CardContent>
           </Card>
-
+          */}
+        </div>
+        <div className="mb-12">
           {/* Gráfico de Barras Agrupadas - UFPA x UFRA x UFOPA x UNIFESSPA */}
           <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
               <CardTitle className="text-nature">
-                Comparativo das Compras por Universidade (2017–2024)
+                FIGURA 1 ILUSTRATIVA DO INDICADOR I:
               </CardTitle>
-              <CardDescription>Valores anuais em reais (R$)</CardDescription>
+              <CardDescription>Mensuração e Valores anuais das Compras da AF nas UF Paraenses entre 2017 a 2024.</CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
@@ -325,81 +388,16 @@ const Results = () => {
               </ResponsiveContainer>
             </CardContent>
           </Card>
+        </div>
 
-          {/* Tabela de Indicadores de Potencialidade */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <TabelaCard table={tabelaAnalitica} />
           <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
-              <CardTitle className="text-nature">Indicadores de Potencialidade</CardTitle>
-              <CardDescription>MATRIZ de Classificação da Potencialidade das UF Paraenses sobre a compra de alimentos da AF.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto rounded-xl border border-border">
-                <table className="min-w-full text-sm text-center border-collapse">
-                  <thead>
-                    <tr className="bg-muted text-foreground font-semibold">
-                      <th className="border border-border px-4 py-2">Categoria</th>
-                      <th className="border border-border px-4 py-2">Indicador de Potencialidade</th>
-                      <th className="border border-border px-4 py-2">Variação %</th>
-                      <th className="border border-border px-4 py-2">Escala do IPCAF</th>
-                      <th className="border border-border px-4 py-2">Nível</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="bg-sky-400 text-white font-semibold">
-                      <td className="border border-border px-4 py-2">Primeira</td>
-                      <td className="border border-border px-4 py-2">Excelente</td>
-                      <td className="border border-border px-4 py-2">81~99%</td>
-                      <td className="border border-border px-4 py-2 bg-sky-400"></td>
-                      <td className="border border-border px-4 py-2"></td>
-                    </tr>
-                    <tr className="bg-lime-400 text-white font-semibold">
-                      <td className="border border-border px-4 py-2">Segunda</td>
-                      <td className="border border-border px-4 py-2">Ótimo</td>
-                      <td className="border border-border px-4 py-2">61~80%</td>
-                      <td className="border border-border px-4 py-2 bg-lime-400"></td>
-                      <td className="border border-border px-4 py-2"></td>
-                    </tr>
-                    <tr className="bg-yellow-300 font-semibold">
-                      <td className="border border-border px-4 py-2">Terceira</td>
-                      <td className="border border-border px-4 py-2">Moderado</td>
-                      <td className="border border-border px-4 py-2">41~60%</td>
-                      <td className="border border-border px-4 py-2 bg-yellow-300"></td>
-                      <td className="border border-border px-4 py-2"></td>
-                    </tr>
-                    <tr className="bg-orange-400 text-white font-semibold">
-                      <td className="border border-border px-4 py-2">Quarta</td>
-                      <td className="border border-border px-4 py-2">Baixo</td>
-                      <td className="border border-border px-4 py-2">21~40%</td>
-                      <td className="border border-border px-4 py-2 bg-orange-400"></td>
-                      <td className="border border-border px-4 py-2"></td>
-                    </tr>
-                    <tr className="bg-red-500 text-white font-semibold">
-                      <td className="border border-border px-4 py-2">Quinta</td>
-                      <td className="border border-border px-4 py-2">Insuficiente</td>
-                      <td className="border border-border px-4 py-2">01~20%</td>
-                      <td className="border border-border px-4 py-2 bg-red-500"></td>
-                      <td className="border border-border px-4 py-2"></td>
-                    </tr>
-                    <tr className="bg-red-800 text-white font-semibold">
-                      <td className="border border-border px-4 py-2">Sexta</td>
-                      <td className="border border-border px-4 py-2">Inexistente</td>
-                      <td className="border border-border px-4 py-2">0%</td>
-                      <td className="border border-border px-4 py-2 bg-red-800"></td>
-                      <td className="border border-border px-4 py-2 text-lg">○○</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Distribuição por Produtos */}
-          <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <CardHeader>
-              <CardTitle className="text-earth">Gráfico Relativo ao Indicador</CardTitle>
-              <CardDescription>da Frequência Relativa Percentual por Instituição em
-                relação ao Montante das Compras da Agricultura Familiar das Universidades Federais
-                Paraenses entre 2017 a 2024.</CardDescription>
+              <CardTitle className="text-earth">FIGURA 2 RELATIVA A TABELA 2</CardTitle>
+              <CardDescription>Indicador da Frequência Relativa Percentual por Instituição em relação ao
+                Montante das Compras da AF das UF Paraenses entre 2017 a 2024.
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
@@ -428,8 +426,74 @@ const Results = () => {
             </CardContent>
           </Card>
         </div>
-
-        {/* Tabela de Universidades */}
+        {/* Tabela de Indicadores de Potencialidade */}
+        <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-nature">MATRIZ DO INDICADOR DE OCORRENCIA E DO ÍNDICE IPCAF</CardTitle>
+            <CardDescription>Matriz do indicador ocorrencia e do índice de Classificação da Potencialidade das UF
+              Paraenses sobre a compra de alimentos da AF.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto rounded-xl border border-border">
+              <table className="min-w-full text-sm text-center border-collapse">
+                <thead>
+                  <tr className="bg-muted text-foreground font-semibold">
+                    <th className="border border-border px-4 py-2">Categoria</th>
+                    <th className="border border-border px-4 py-2">Indicador de Potencialidade</th>
+                    <th className="border border-border px-4 py-2">Variação %</th>
+                    <th className="border border-border px-4 py-2">Escala do IPCAF</th>
+                    <th className="border border-border px-4 py-2">Nível</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-sky-400 text-white font-semibold">
+                    <td className="border border-border px-4 py-2">Primeira</td>
+                    <td className="border border-border px-4 py-2">Excelente</td>
+                    <td className="border border-border px-4 py-2">81~99%</td>
+                    <td className="border border-border px-4 py-2 bg-sky-400"></td>
+                    <td className="border border-border px-4 py-2"></td>
+                  </tr>
+                  <tr className="bg-lime-400 text-white font-semibold">
+                    <td className="border border-border px-4 py-2">Segunda</td>
+                    <td className="border border-border px-4 py-2">Ótimo</td>
+                    <td className="border border-border px-4 py-2">61~80%</td>
+                    <td className="border border-border px-4 py-2 bg-lime-400"></td>
+                    <td className="border border-border px-4 py-2"></td>
+                  </tr>
+                  <tr className="bg-yellow-300 font-semibold">
+                    <td className="border border-border px-4 py-2">Terceira</td>
+                    <td className="border border-border px-4 py-2">Moderado</td>
+                    <td className="border border-border px-4 py-2">41~60%</td>
+                    <td className="border border-border px-4 py-2 bg-yellow-300"></td>
+                    <td className="border border-border px-4 py-2"></td>
+                  </tr>
+                  <tr className="bg-orange-400 text-white font-semibold">
+                    <td className="border border-border px-4 py-2">Quarta</td>
+                    <td className="border border-border px-4 py-2">Baixo</td>
+                    <td className="border border-border px-4 py-2">21~40%</td>
+                    <td className="border border-border px-4 py-2 bg-orange-400"></td>
+                    <td className="border border-border px-4 py-2"></td>
+                  </tr>
+                  <tr className="bg-red-500 text-white font-semibold">
+                    <td className="border border-border px-4 py-2">Quinta</td>
+                    <td className="border border-border px-4 py-2">Insuficiente</td>
+                    <td className="border border-border px-4 py-2">01~20%</td>
+                    <td className="border border-border px-4 py-2 bg-red-500"></td>
+                    <td className="border border-border px-4 py-2"></td>
+                  </tr>
+                  <tr className="bg-red-800 text-white font-semibold">
+                    <td className="border border-border px-4 py-2">Sexta</td>
+                    <td className="border border-border px-4 py-2">Inexistente</td>
+                    <td className="border border-border px-4 py-2">0%</td>
+                    <td className="border border-border px-4 py-2 bg-red-800"></td>
+                    <td className="border border-border px-4 py-2 text-lg">○○</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+        {/*
         <Card className="shadow-lg">
           <CardHeader>
             <CardTitle className="text-nature">Compras por Universidade (2023)</CardTitle>
@@ -456,6 +520,7 @@ const Results = () => {
             </ResponsiveContainer>
           </CardContent>
         </Card>
+        */}
 
         {/*
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
@@ -490,41 +555,66 @@ const Results = () => {
         */}
         {/* Tabelas adicionais */}
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {extraTables.map((table, idx) => (
-            <Card key={idx} className="shadow-lg hover:shadow-xl transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="text-nature">{table.title}</CardTitle>
-                <CardDescription>{table.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        {Object.keys(table.data[0]).map((header, hIdx) => (
-                          <TableHead key={hIdx} className="capitalize">
-                            {header}
-                          </TableHead>
-                        ))}
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {table.data.map((row, rIdx) => (
-                        <TableRow key={rIdx}>
-                          {Object.values(row).map((cell, cIdx) => (
-                            <TableCell key={cIdx}>{cell}</TableCell>
-                          ))}
+          <TabelaCard table={indicador2} />
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-nature">INDICADOR II</CardTitle>
+              <CardDescription>
+                Classificação da Potencialidade Anual das quatro Universidades Federais Paraenses em relação às compras da Agricultura Familiar.
+              </CardDescription>
+            </CardHeader>
+
+            <CardContent>
+              <div className="overflow-x-auto">
+                <Table className="border">
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="bg-gray-200 text-center font-semibold border">UF</TableHead>
+                      <TableHead className="bg-gray-200 text-center font-semibold border">
+                        Indicador do Percentual da Ocorrência Anual de compras da AF
+                      </TableHead>
+                      <TableHead className="bg-gray-200 text-center font-semibold border">Categoria</TableHead>
+                      <TableHead className="bg-gray-200 text-center font-semibold border">
+                        Classificação do IPCAF
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+
+                  <TableBody>
+                    {indiceMatriz.data.map((row, idx) => {
+                      // Define cores dinâmicas conforme os valores
+                      let bgColorPercentual = "";
+                      let bgColorCategoria = "";
+                      let bgColorClassificacao = "";
+
+                      if (row.uf === "UFPA") {
+                        bgColorPercentual = "bg-yellow-300";
+                        bgColorCategoria = "bg-yellow-300";
+                        bgColorClassificacao = "bg-yellow-300";
+                      } else if (row.uf === "UFRA") {
+                        bgColorPercentual = "bg-red-500 text-white";
+                        bgColorCategoria = "bg-red-500 text-white";
+                        bgColorClassificacao = "bg-red-500 text-white";
+                      } else {
+                        bgColorPercentual = "bg-red-800 text-white";
+                        bgColorCategoria = "bg-red-800 text-white";
+                        bgColorClassificacao = "bg-red-800 text-white";
+                      }
+
+                      return (
+                        <TableRow key={idx} className="text-center font-medium">
+                          <TableCell className="border font-semibold bg-white">{row.uf}</TableCell>
+                          <TableCell className={`border ${bgColorPercentual}`}>{row.percentual}</TableCell>
+                          <TableCell className={`border ${bgColorCategoria}`}>{row.categoria}</TableCell>
+                          <TableCell className={`border ${bgColorClassificacao}`}>{row.classificacao}</TableCell>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-                <p className="text-sm text-muted-foreground mt-4 italic text-center">
-                  {table.note}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
       </div>
