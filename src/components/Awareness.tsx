@@ -85,7 +85,7 @@ const Awareness = () => {
             </a>
 
             <a
-              href="https://drive.google.com/file/d/1q1R9PQGTduCY_k6rQwuWePl7VWicwAyk"
+              href="https://drive.google.com/file/d/1llXBrUnJhDGVYfyjciHyH6Vvfm_aU2ZP"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-card p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 block"

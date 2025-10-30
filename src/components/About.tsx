@@ -88,32 +88,33 @@ export const TabelaModelosGestao: React.FC = () => {
 
 
 const dataEntraves = [
-  { name: "LOGÍSTICA E CUSTOS", nivel: "Média", cor: "#FFD700", valor: 2 },
-  { name: "BUROCRACIA DOS EDITAIS", nivel: "Média", cor: "#FFD700", valor: 2 },
-  { name: "DIVULGAÇÃO INSUFICIENTE", nivel: "Média", cor: "#FFD700", valor: 2 },
-  { name: "CONCORRÊNCIA COM 'FAKES'/INFORMAIS", nivel: "Alta", cor: "#FF4C4C", valor: 3 },
-  { name: "IRREGULARIDADE E SAZONALIDADE", nivel: "Alta", cor: "#FF4C4C", valor: 3 },
+  { name: "ENTRAVES LOGÍSTICOS E PREÇOS OFERTADOS", nivel: "Média", cor: "#FFD700", valor: 2 },
+  { name: "BUROCRACIA DOS EDITAIS DE CHAMADA PÚBLICA", nivel: "Média", cor: "#FFD700", valor: 2 },
+  { name: "DIVULGAÇÃO INSUFICIENTE DAS CHAMADAS", nivel: "Média", cor: "#FFD700", valor: 2 },
+  { name: "CONCORRÊNCIA DESLEAL COM IRREGULARES E GRUPOS INFORMAIS", nivel: "Alta", cor: "#FF4C4C", valor: 3 },
+  { name: "IRREGULARIDADE DAS COMPRAS E SAZONALIDADE DOS PEDIDOS", nivel: "Alta", cor: "#FF4C4C", valor: 3 },
 ];
 
 const dataFrequencia = [
-  { categoria: "Preços praticados", valor: 9 },
-  { categoria: "Burocracia/ editais/ regras", valor: 9 },
-  { categoria: "Renda/retorno financeiro", valor: 8 },
-  { categoria: "Produtos/ portfólio", valor: 5 },
-  { categoria: "Quantidade/ demanda", valor: 3 },
-  { categoria: "Capacidade/ apoio institucional", valor: 2 },
-  { categoria: "Concorrência desleal/ irregulares", valor: 8 },
-  { categoria: "Logística/ transporte", valor: 4 },
-  { categoria: "Gênero/ autonomia feminina", valor: 3 },
-  { categoria: "Planejamento/ regularidade", valor: 4 },
-  { categoria: "Sazonalidade", valor: 1 },
+  { categoria: "Preços baixos/ entraves Logísticos", valor: 5, tipo: "operacional" },
+  { categoria: "Burocracia/ editais/ regras", valor: 4, tipo: "operacional" },
+  { categoria: "Aumento renda/ retorno financeiro", valor: 9, tipo: "positivo" },
+  { categoria: "Maiores Volumes/ preços justos", valor: 5, tipo: "positivo" },
+  { categoria: "Apoio institucional/ capacitação", valor: 6, tipo: "positivo" },
+  { categoria: "Concorrência desleal/ irregulares", valor: 9, tipo: "operacional" },
+  { categoria: "Venda segura/ acessibilidade", valor: 9, tipo: "positivo" },
+  { categoria: "Divulgação insuficiente dos editais", valor: 4, tipo: "operacional" },
+  { categoria: "Gênero/ autonomia feminina", valor: 4, tipo: "positivo" },
+  { categoria: "Fortalecimento organizacional agricultura familiar", valor: 8, tipo: "positivo" },
+  { categoria: "Sazonalidade pedidos/ irregularidade compras", valor: 9, tipo: "operacional" },
 ];
 
 const GraficoEntraves = () => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mb-10">
       <h4 className="text-center text-lg font-semibold mb-6 text-foreground">
-        Entraves por nível de importância na execução do PAA-CI
+        Dificuldades por nível de importância na execução do PAA-CI segundo a
+        Agricultura Familiar.
       </h4>
 
       <div className="w-full h-80">
@@ -154,6 +155,8 @@ const GraficoEntraves = () => {
   );
 };
 
+
+
 export const GraficoRefeicoesDiarias: React.FC = () => {
   const data = [
     { universidade: "UFPA", refeicoes: 6000, cor: "#FFA54C" },
@@ -178,7 +181,6 @@ export const GraficoRefeicoesDiarias: React.FC = () => {
             <XAxis dataKey="universidade" /> {/* label={{ value: "Refeições Diárias", position: "bottom", offset: 10 }} */}
             <YAxis />
             <Tooltip />
-            <Legend />
             <Bar dataKey="refeicoes" name="Refeições Diárias">
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.cor} />
@@ -200,7 +202,7 @@ export const GraficoFrequencia: React.FC = () => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mb-10">
       <h4 className="text-center text-lg font-semibold mb-6 text-foreground">
-        Frequência de menções por categoria (todas as organizações)
+        Frequência de menções por categoria identificada segundo os Agricultores Familiares
       </h4>
 
       <div className="w-full h-96">
@@ -221,21 +223,31 @@ export const GraficoFrequencia: React.FC = () => {
             <YAxis
               tick={{ fontSize: 12, fill: "#222" }}
               domain={[0, 10]}
-              label={{
-                value: "",
-                angle: -90,
-                position: "insideLeft",
-              }}
             />
             <Tooltip cursor={{ fill: "rgba(0,0,0,0.05)" }} />
-            <Legend verticalAlign="bottom" height={36} />
-            <Bar
-              dataKey="valor"
-              name="Categorias"
-              fill="#FFB300"
-              barSize={35}
-              radius={[4, 4, 0, 0]}
+
+            {/* Legenda personalizada */}
+            <Legend
+              verticalAlign="bottom"
+              align="center"
+              wrapperStyle={{
+                position: "relative",
+                top: 0, // desloca para baixo
+              }}
+              payload={[
+                { value: "Barreiras operacionais", type: "square", color: "#E53935" },
+                { value: "Impactos positivos", type: "square", color: "#FFB300" },
+              ]}
             />
+
+            <Bar dataKey="valor" name="Menções" barSize={35} radius={[4, 4, 0, 0]}>
+              {dataFrequencia.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={entry.tipo === "operacional" ? "#E53935" : "#FFB300"}
+                />
+              ))}
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -325,8 +337,6 @@ const About = () => {
             </p>
             <GraficoEntraves />
             <GraficoFrequencia />
-            <TabelaModelosGestao />
-            <GraficoRefeicoesDiarias />
             <h3 className="text-3xl font-bold mb-6 text-foreground bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
               Sobre a perspectiva das Universidades Federais.
             </h3>
@@ -335,6 +345,9 @@ const About = () => {
               compras institucionais (PAA-CI) na efetividade das aquisições da agricultura familiar pelas
               Universidades Federais Paraenses.
             </p>
+            <TabelaModelosGestao />
+            <GraficoRefeicoesDiarias />
+            
             <h3 className="text-3xl font-bold mb-6 text-foreground bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
               Quer entender melhor, conheça a Tese
             </h3>

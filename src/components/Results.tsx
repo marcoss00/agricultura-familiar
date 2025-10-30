@@ -47,6 +47,333 @@ export const TabelaCard: React.FC<TableProps> = ({ table }) => (
   </Card>
 );
 
+export const TabelaCard2: React.FC<TableProps> = ({ table }) => {
+  return (
+    <Card className="shadow-lg hover:shadow-xl transition-all duration-300">
+      <CardHeader>
+        <CardTitle className="text-nature">{table.title}</CardTitle>
+        <CardDescription>{table.description}</CardDescription>
+      </CardHeader>
+
+      <CardContent>
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                {Object.keys(table.data[0]).map((header, hIdx) => (
+                  <TableHead key={hIdx} className="capitalize text-center">
+                    {header}
+                  </TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+
+            <TableBody>
+              {table.data.map((row, rIdx) => {
+                const keys = Object.keys(row);
+                const isLastRow = rIdx === table.data.length - 1;
+
+                if (isLastRow) {
+                  // última coluna (texto explicativo) deve ficar na última coluna
+                  const lastKey = keys[keys.length - 1];
+                  const otherKeys = keys.slice(0, -1);
+
+                  // procura um valor monetário entre as colunas à esquerda (ex.: "R$ 1.574.349,11")
+                  const currencyKey = otherKeys.find((k) => {
+                    const v = String(row[k] ?? "");
+                    return /^\s*R\$\s*[\d.,]+/.test(v);
+                  });
+
+                  // se encontrou valor monetário, usa ele; senão concatena os valores das colunas exceto a última
+                  const mergedValue = currencyKey
+                    ? (row[currencyKey] as string)
+                    : otherKeys.map((k) => row[k]).join(" ");
+
+                  return (
+                    <TableRow key={rIdx}>
+                      {/* célula única que ocupa todas as colunas exceto a última */}
+                      <TableCell
+                        colSpan={otherKeys.length}
+                        className="font-semibold text-center bg-gray-50 border"
+                      >
+                        {mergedValue}
+                      </TableCell>
+
+                      {/* mantém o texto explicativo na última coluna */}
+                      <TableCell className="text-left border bg-white">
+                        {row[lastKey]}
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+
+                // linhas normais
+                return (
+                  <TableRow key={rIdx}>
+                    {Object.values(row).map((cell, cIdx) => (
+                      <TableCell key={cIdx}>{cell}</TableCell>
+                    ))}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </div>
+
+        {table.note && (
+          <p className="text-sm text-muted-foreground mt-4 italic text-center">
+            {table.note}
+          </p>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+export const TabelaCard3: React.FC<TableProps> = ({ table }) => (
+  <Card className="shadow-lg hover:shadow-xl transition-all duration-300">
+    <CardHeader>
+      <CardTitle className="text-nature">{table.title}</CardTitle>
+      <CardDescription>{table.description}</CardDescription>
+    </CardHeader>
+
+    <CardContent>
+      <div className="overflow-x-auto">
+        <Table className="border-2 border-gray-400 border-collapse">
+          <TableHeader>
+            <TableRow className="border-2 border-gray-400">
+              {Object.keys(table.data[0]).map((header, hIdx) => (
+                <TableHead
+                  key={hIdx}
+                  className="capitalize border-2 border-gray-400 text-center bg-gray-100"
+                >
+                  {header}
+                </TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
+            {table.data.map((row, rIdx) => (
+              <TableRow key={rIdx} className="border-2 border-gray-400">
+                {Object.values(row).map((cell, cIdx) => (
+                  <TableCell
+                    key={cIdx}
+                    className="border-2 border-gray-400 text-center"
+                  >
+                    {cell}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+
+      {table.note && (
+        <p className="text-sm text-muted-foreground mt-4 italic text-center">
+          {table.note}
+        </p>
+      )}
+    </CardContent>
+  </Card>
+);
+
+export const IndiceIPCAF = () => {
+  return (
+    <Card className="shadow-lg border-2 border-black">
+      {/* Título acima da tabela */}
+      <CardHeader className="pb-2 text-center">
+        <CardTitle className="text-green-700 font-bold uppercase">
+          ÍNDICE IPCAF
+        </CardTitle>
+        <CardDescription className="text-black font-medium">
+          Índice de Potencialidade das Universidades Paraenses para Compras da Agricultura Familiar.
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className="p-0">
+        <div className="overflow-x-auto">
+          <table className="border-collapse border-2 border-black w-full text-center font-semibold text-black">
+            {/* cabeçalho dos nomes das UFs (a primeira célula do cabeçalho fica vazia pois a coluna esquerda é o bloco descritivo) */}
+            <thead>
+              <tr>
+                <th className="w-1/3 border-2 border-black bg-white"></th>
+                <th className="bg-yellow-300 border-2 border-black p-2">UFPA</th>
+                <th className="bg-red-400 border-2 border-black p-2">UFRA</th>
+                <th className="bg-red-600 border-2 border-black p-2 text-white">UFOPA</th>
+                <th className="bg-red-800 border-2 border-black p-2 text-white">UNIFESSPA</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {/* primeira linha de conteúdo: percentuais */}
+              <tr>
+                {/* célula grande da esquerda que ocupa 3 linhas */}
+                <td
+                  rowSpan={3}
+                  className="align-middle text-left border-2 border-black bg-gray-100 p-4"
+                  style={{ verticalAlign: "middle" }}
+                >
+                  <div className="font-bold text-base">
+                    Índice de Potencialidade das Universidades Paraenses para
+                    Compras da Agricultura Familiar.
+                  </div>
+                </td>
+
+                <td className="bg-yellow-300 border-2 border-black p-4">50,00%</td>
+                <td className="bg-red-400 border-2 border-black p-4">12,50%</td>
+                <td className="bg-red-600 border-2 border-black p-4 text-white">0,00%</td>
+                <td className="bg-red-800 border-2 border-black p-4 text-white">0,00%</td>
+              </tr>
+
+              {/* segunda linha de conteúdo: classificação textual */}
+              <tr>
+                <td className="bg-yellow-300 border-2 border-black p-4">Moderado</td>
+                <td className="bg-red-400 border-2 border-black p-4">Insuficiente</td>
+                <td className="bg-red-600 border-2 border-black p-4 text-white">Inexistente</td>
+                <td className="bg-red-800 border-2 border-black p-4 text-white">Inexistente</td>
+              </tr>
+
+              {/* terceira linha de conteúdo: símbolos/ícones de intensidade */}
+              <tr>
+                {/* você pode ajustar os símbolos para os que preferir (use ícones se quiser) */}
+                <td className="bg-yellow-300 border-2 border-black p-4 text-2xl">▮▮▮</td>
+                <td className="bg-red-400 border-2 border-black p-4 text-2xl">▮</td>
+                <td className="bg-red-600 border-2 border-black p-4 text-2xl text-white">○○</td>
+                <td className="bg-red-800 border-2 border-black p-4 text-2xl text-white">○○</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export const GraficoIPCAF = () => {
+  const data = [
+    { nome: "UFPA", percentual: 50, cor: "#00b050" }, // verde
+    { nome: "UFRA", percentual: 12.5, cor: "#c00000" }, // vermelho
+    { nome: "UFOPA", percentual: 0, cor: "#7030a0" }, // roxo
+    { nome: "UNIFESSPA", percentual: 0, cor: "#e36c09" }, // laranja
+  ];
+
+  const classificacoes = [
+    "Excelente",
+    "Ótimo",
+    "Moderado",
+    "Baixo",
+    "Insuficiente",
+    "Inexistente",
+  ];
+
+  return (
+    <Card className="shadow-lg border border-gray-300">
+      <CardHeader className="text-center pb-2">
+        <CardTitle className="text-green-700 font-bold uppercase">
+          FIGURA 3 ILUSTRATIVA DO ÍNDICE IPCAF
+        </CardTitle>
+        <CardDescription className="text-black font-medium">
+          Percentual do Índice de Potencialidade das Universidades Paraenses
+          para Compras da Agricultura Familiar.
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent>
+        <div
+          className="relative p-4 rounded-lg"
+          style={{
+            background:
+              "linear-gradient(to bottom, #fff5e6, #fbd1b7, #f6c085, #fbd1b7, #fff5e6)",
+            border: "1px solid #ccc",
+          }}
+        >
+          <ResponsiveContainer width="100%" height={380}>
+            <BarChart
+              data={data}
+              margin={{ top: 30, right: 100, left: 30, bottom: 70 }}
+            >
+              <XAxis dataKey="nome" />
+              <YAxis
+                domain={[0, 100]}
+                tickFormatter={(v) => `${v.toFixed(0)}%`}
+              />
+              <Tooltip formatter={(v: number) => `${v.toFixed(2)}%`} />
+              <Bar dataKey="percentual" barSize={60}>
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.cor} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+
+          {/* Classificações à direita */}
+          <div className="absolute right-20 top-12 text-sm font-medium text-black leading-10">
+            {classificacoes.map((label, idx) => (
+              <div key={idx} className="flex items-center space-x-1">
+                <span>=&gt;</span>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export const Resultado = () => {
+  const data = [
+    { nome: "UFPA", percentual: 50, cor: "#00b050" }, // verde
+    { nome: "UFRA", percentual: 12.5, cor: "#c00000" }, // vermelho
+    { nome: "UFOPA", percentual: 0, cor: "#7030a0" }, // roxo
+    { nome: "UNIFESSPA", percentual: 0, cor: "#e36c09" }, // laranja
+  ];
+
+  const classificacoes = [
+    "Excelente",
+    "Ótimo",
+    "Moderado",
+    "Baixo",
+    "Insuficiente",
+    "Inexistente",
+  ];
+
+  return (
+    <Card className="shadow-lg border border-gray-300">
+      <CardHeader className="text-center pb-2">
+        <CardTitle className="text-green-700 font-bold uppercase">
+          Resultado
+        </CardTitle>
+        <CardDescription className="text-black font-medium">
+          
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent>
+        <div
+          className="relative p-4 rounded-lg"
+          style={{
+            background:
+              "linear-gradient(to bottom, #fff5e6, #fbd1b7, #f6c085, #fbd1b7, #fff5e6)",
+            border: "1px solid #ccc",
+          }}
+        >
+          <p>
+            O índice, ao mesmo tempo em que mostra o potencial das universidades federais paraenses
+            como agentes de desenvolvimento local (por meio das compras institucionais de alimentos),
+            revela que sua realização é incipiente e irregular, demonstrando a necessidade de um maior
+            envolvimento das Universidades Federais na promoção dessas políticas.
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+
+
 
 const Results = () => {
   // Dados simulados para demonstração
@@ -71,14 +398,14 @@ const Results = () => {
   ];
 
   const tableData = [
-    { ano: "2017", ufpa: "R$111.861,90", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 1, mensuracao: "BAIXO" },
-    { ano: "2018", ufpa: "R$0,00", ufra: "R$34.898,62", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 1, mensuracao: "BAIXO" },
-    { ano: "2019", ufpa: "R$0,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 0, mensuracao: "INEXISTENTE" },
-    { ano: "2020", ufpa: "R$295.056,67", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 1, mensuracao: "BAIXO" },
-    { ano: "2021", ufpa: "R$0,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 0, mensuracao: "INEXISTENTE" },
-    { ano: "2022", ufpa: "R$400.314,92", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 1, mensuracao: "BAIXO" },
-    { ano: "2023", ufpa: "R$0,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 0, mensuracao: "INEXISTENTE" },
-    { ano: "2024", ufpa: "R$732.217,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: 1, mensuracao: "BAIXO" },
+    { ano: "2017", ufpa: "R$111.861,90", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: "Classe 1", mensuracao: "BAIXO" },
+    { ano: "2018", ufpa: "R$0,00", ufra: "R$34.898,62", ufopa: "R$0,00", unifesspa: "R$0,00", classe: "Classe 1", mensuracao: "BAIXO" },
+    { ano: "2019", ufpa: "R$0,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: "Classe 0", mensuracao: "INEXISTENTE" },
+    { ano: "2020", ufpa: "R$295.056,67", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: "Classe 1", mensuracao: "BAIXO" },
+    { ano: "2021", ufpa: "R$0,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: "Classe 0", mensuracao: "INEXISTENTE" },
+    { ano: "2022", ufpa: "R$400.314,92", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: "Classe 1", mensuracao: "BAIXO" },
+    { ano: "2023", ufpa: "R$0,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: "Classe 0", mensuracao: "INEXISTENTE" },
+    { ano: "2024", ufpa: "R$732.217,00", ufra: "R$0,00", ufopa: "R$0,00", unifesspa: "R$0,00", classe: "Classe 1", mensuracao: "BAIXO" },
   ];
 
   const comparativeData = [
@@ -95,23 +422,21 @@ const Results = () => {
   // TABELA 1
   const tabelaValoresAnuais = {
     title: "TABELA 1",
-    description: "Dados primarios levantados dos Valores Anuais das Compras da AF nas UF Paraenses, entre 2017 a 2024.",
+    description: "Dados primarios levantados dos Valores anuais das Compras da AF nas UF Paraenses, entre 2017 a 2024.",
     data: [
-      { ANO: "2017", UFPA: "R$ 111.861,90", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 111.861,90" },
-      { ANO: "2018", UFPA: "R$ 0,00", UFRA: "R$ 34.898,62", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 34.898,62" },
-      { ANO: "2019", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
-      { ANO: "2020", UFPA: "R$ 295.056,67", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 295.056,67" },
-      { ANO: "2021", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
-      { ANO: "2022", UFPA: "R$ 400.314,92", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 400.314,92" },
-      { ANO: "2023", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
-      { ANO: "2024", UFPA: "R$ 732.217,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 732.217,00" },
-      { ANO: "-", UFPA: "-", UFRA: "-", UFOPA: "-", UNIFESSPA: "-", "Valor Total anual de compras da AF pelas UF Paraenses": "-" },
-      { ANO: "-", UFPA: "R$ 807.233,49", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "MONTANTE POR UF (no período analisado)" },
-      { ANO: "-", UFPA: "R$ 34.898,62", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor Total anual de compras da AF pelas UF Paraenses": "R$ 732.217,00" },
-      { ANO: "-", UFPA: "04", UFRA: "01", UFOPA: "0", UNIFESSPA: "0", "Valor Total anual de compras da AF pelas UF Paraenses": "QTDE DE COMPRAS POR UF (no período pesquisado)" },
-      { ANO: "-", UFPA: "", UFRA: "", UFOPA: "", UNIFESSPA: "", "Valor Total anual de compras da AF pelas UF Paraenses": "" },
+      { ANO: "2017", UFPA: "R$ 111.861,90", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "R$ 111.861,90" },
+      { ANO: "2018", UFPA: "R$ 0,00", UFRA: "R$ 34.898,62", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "R$ 34.898,62" },
+      { ANO: "2019", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+      { ANO: "2020", UFPA: "R$ 295.056,67", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "R$ 295.056,67" },
+      { ANO: "2021", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+      { ANO: "2022", UFPA: "R$ 400.314,92", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "R$ 400.314,92" },
+      { ANO: "2023", UFPA: "R$ 0,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "R$ 0,00" },
+      { ANO: "2024", UFPA: "R$ 732.217,00", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "R$ 732.217,00" },
+      { ANO: "-", UFPA: "R$ 1.539.450,49", UFRA: "R$ 34.898,62", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "MONTANTE POR UF (no período analisado)" },
+      { ANO: "-", UFPA: "04", UFRA: "01", UFOPA: "0", UNIFESSPA: "0", "Valor total anual de compras da AF pelas UF Paraenses": "QTDE DE COMPRAS POR UF (no período pesquisado)" },
+      { ANO: "-", UFPA: "R$ 1.574.349,11", UFRA: "R$ 0,00", UFOPA: "R$ 0,00", UNIFESSPA: "R$ 0,00", "Valor total anual de compras da AF pelas UF Paraenses": "Montante gasto pelas UF Paraenses com compras da AF (2017~2024)" },
     ],
-    note: "Montante gasto pelas UF Paraenses com compras da AF (2017~2024): R$ 1.574.349,11",
+    //note: "Montante gasto pelas UF Paraenses com compras da AF (2017~2024): R$ 1.574.349,11",
   };
 
   // TABELA 2
@@ -179,7 +504,7 @@ const Results = () => {
         </div>
 
         <div className="mb-12">
-          <TabelaCard table={tabelaValoresAnuais} />
+          <TabelaCard2 table={tabelaValoresAnuais} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
@@ -187,7 +512,7 @@ const Results = () => {
           {/* Tabela de Classes por Universidade */}
           <Card className="mt-12 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-nature">INDICADOR 1</CardTitle>
+              <CardTitle className="text-nature">INDICADOR I</CardTitle>
               <CardDescription>
                 Matriz para construção do Indicador de Ocorrência Anual de Compras da
                 AF nas UF Paraenses entre 2017 a 2024.
@@ -265,7 +590,7 @@ const Results = () => {
           {/* Tabela detalhada */}
           <Card className="mt-12 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-earth">INDICADOR 1</CardTitle>
+              <CardTitle className="text-earth">INDICADOR I</CardTitle>
               <CardDescription>
                 Indicador da Mensuração Anual das Compras na expectativa da AF sobre
                 as UF Paraenses entre 2017 a 2024.
@@ -446,40 +771,40 @@ const Results = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-sky-400 text-white font-semibold">
+                  <tr className="bg-sky-400 font-semibold">
                     <td className="border border-border px-4 py-2">Primeira</td>
                     <td className="border border-border px-4 py-2">Excelente</td>
                     <td className="border border-border px-4 py-2">81~99%</td>
                     <td className="border border-border px-4 py-2 bg-sky-400"></td>
-                    <td className="border border-border px-4 py-2"></td>
+                    <td className="border border-border px-4 py-2">I</td>
                   </tr>
-                  <tr className="bg-lime-400 text-white font-semibold">
+                  <tr className="bg-lime-400 font-semibold">
                     <td className="border border-border px-4 py-2">Segunda</td>
                     <td className="border border-border px-4 py-2">Ótimo</td>
                     <td className="border border-border px-4 py-2">61~80%</td>
                     <td className="border border-border px-4 py-2 bg-lime-400"></td>
-                    <td className="border border-border px-4 py-2"></td>
+                    <td className="border border-border px-4 py-2">II</td>
                   </tr>
                   <tr className="bg-yellow-300 font-semibold">
                     <td className="border border-border px-4 py-2">Terceira</td>
                     <td className="border border-border px-4 py-2">Moderado</td>
                     <td className="border border-border px-4 py-2">41~60%</td>
                     <td className="border border-border px-4 py-2 bg-yellow-300"></td>
-                    <td className="border border-border px-4 py-2"></td>
+                    <td className="border border-border px-4 py-2">III</td>
                   </tr>
                   <tr className="bg-orange-400 text-white font-semibold">
                     <td className="border border-border px-4 py-2">Quarta</td>
                     <td className="border border-border px-4 py-2">Baixo</td>
                     <td className="border border-border px-4 py-2">21~40%</td>
                     <td className="border border-border px-4 py-2 bg-orange-400"></td>
-                    <td className="border border-border px-4 py-2"></td>
+                    <td className="border border-border px-4 py-2">IV</td>
                   </tr>
                   <tr className="bg-red-500 text-white font-semibold">
                     <td className="border border-border px-4 py-2">Quinta</td>
                     <td className="border border-border px-4 py-2">Insuficiente</td>
                     <td className="border border-border px-4 py-2">01~20%</td>
                     <td className="border border-border px-4 py-2 bg-red-500"></td>
-                    <td className="border border-border px-4 py-2"></td>
+                    <td className="border border-border px-4 py-2">V</td>
                   </tr>
                   <tr className="bg-red-800 text-white font-semibold">
                     <td className="border border-border px-4 py-2">Sexta</td>
@@ -555,7 +880,7 @@ const Results = () => {
         */}
         {/* Tabelas adicionais */}
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <TabelaCard table={indicador2} />
+          <TabelaCard3 table={indicador2} />
           <Card className="shadow-lg">
             <CardHeader>
               <CardTitle className="text-nature">INDICADOR II</CardTitle>
@@ -573,9 +898,9 @@ const Results = () => {
                       <TableHead className="bg-gray-200 text-center font-semibold border">
                         Indicador do Percentual da Ocorrência Anual de compras da AF
                       </TableHead>
-                      <TableHead className="bg-gray-200 text-center font-semibold border">Categoria</TableHead>
+                      <TableHead className="bg-gray-200 text-center font-semibold border">Categoria mensurada</TableHead>
                       <TableHead className="bg-gray-200 text-center font-semibold border">
-                        Classificação do IPCAF
+                        Classificação do Indicador de Ocorrência
                       </TableHead>
                     </TableRow>
                   </TableHeader>
@@ -617,7 +942,21 @@ const Results = () => {
           </Card>
         </div>
 
+        <div className="mb-12">
+          <IndiceIPCAF />
+        </div>
+
+        <div className="mb-12">
+          <GraficoIPCAF />
+        </div>
+
+        <div className="mb-12">
+          <Resultado />
+        </div>
+
       </div>
+
+
     </section>
   );
 };
