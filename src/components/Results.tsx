@@ -353,7 +353,7 @@ export const Resultado = () => {
 
       <CardContent>
         <div
-          className="relative p-4 rounded-lg"
+          className="relative p-4 rounded-lg font-bold"
           style={{
             background:
               "linear-gradient(to bottom, #fff5e6, #fbd1b7, #f6c085, #fbd1b7, #fff5e6)",
