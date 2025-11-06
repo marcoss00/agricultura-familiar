@@ -52,7 +52,6 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
             Contato
           </h2>
-
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -82,10 +81,7 @@ const Contact = () => {
                   </div>
                 </CardContent>
               </Card>
-
             </div>
-
-
           </div>
           <div className="bg-gradient-to-r from-nature/10 to-earth/10 p-6 rounded-xl">
             <h4 className="font-semibold text-lg mb-3 text-foreground">
