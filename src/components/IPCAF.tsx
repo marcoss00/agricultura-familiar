@@ -81,7 +81,7 @@ const IPCAF = () => {
             <div className="container mx-auto px-4">
                 {/* Título principal da seção IPCAF */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h2 className="text-4xl font-bold tracking-tight text-foreground mb-3">
+                    <h2 className="text-4xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
                         O Índice de Potencialidade das Compras da Agricultura Familiar (IPCAF)
                     </h2>
                     <p className="text-base text-muted-foreground leading-relaxed">
@@ -90,7 +90,7 @@ const IPCAF = () => {
                 </div>
                 {/* 1 - Apresentação (texto apenas) */}
                 <section className="max-w-3xl mx-auto text-left mb-10">
-                    <h3 className="text-2xl font-semibold mb-3">Apresentação</h3>
+                    <h3 className="text-4xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">Apresentação</h3>
                     <p className="text-base text-muted-foreground leading-relaxed">
                         Para que as compras da Agricultura Familiar (AF) funcionem como um efetivo instrumento de
                         desenvolvimento sustentável, a gestão pública precisa desenvolver ferramentas que possam medir,
@@ -111,7 +111,7 @@ const IPCAF = () => {
                 <section className="grid grid-cols-1 gap-8 items-start max-w-3xl mx-auto">
                     {/* left: texto explicativo */}
                     <div>
-                        <h3 className="text-2xl font-semibold mb-3">Conceito e Objetivo</h3>
+                        <h3 className="text-4xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">Conceito e Objetivo</h3>
                         <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                             O índice é uma medida sintética que combina diferentes indicadores que foi construído como ferramenta
                             metodológica para mensurar a efetividade das UF Paraenses nas compras no Mercado Institucional de
@@ -143,7 +143,7 @@ const IPCAF = () => {
 
                 {/* 3 - Aplicabilidade (texto apenas) */}
                 <section className="max-w-3xl mx-auto text-left mb-10 mt-16">
-                    <h3 className="text-2xl font-semibold mb-3">Aplicabilidade e Relevância do IPCAF</h3>
+                    <h3 className="text-4xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">Aplicabilidade e Relevância do IPCAF</h3>
                     <p className="text-base text-muted-foreground leading-relaxed mb-4">
                         A relevância deste produto reside em sua capacidade de transformar dados brutos de compras públicas
                         em informação estratégica e acessível. O IPCAF transcende o contexto paraense, podendo ser adaptado

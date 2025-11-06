@@ -379,7 +379,7 @@ const About = () => {
         {/* Pesquisador */}
         <div className="bg-card rounded-2xl p-8 md:p-12 shadow-lg">
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold mb-4 text-foreground">
+            <h3 className="text-4xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
               Sobre o Produto
             </h3>
           </div>
