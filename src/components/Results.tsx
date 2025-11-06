@@ -200,9 +200,9 @@ export const IndiceIPCAF = () => {
               <tr>
                 <th className="w-1/3 border-2 border-black bg-white"></th>
                 <th className="bg-yellow-300 border-2 border-black p-2">UFPA</th>
-                <th className="bg-red-400 border-2 border-black p-2">UFRA</th>
-                <th className="bg-red-600 border-2 border-black p-2 text-white">UFOPA</th>
-                <th className="bg-red-800 border-2 border-black p-2 text-white">UNIFESSPA</th>
+                <th className="bg-red-600 border-2 border-black p-2">UFRA</th>
+                <th className="bg-red-900 border-2 border-black p-2 text-white">UFOPA</th>
+                <th className="bg-red-900 border-2 border-black p-2 text-white">UNIFESSPA</th>
               </tr>
             </thead>
 
@@ -222,26 +222,26 @@ export const IndiceIPCAF = () => {
                 </td>
 
                 <td className="bg-yellow-300 border-2 border-black p-4">50,00%</td>
-                <td className="bg-red-400 border-2 border-black p-4">12,50%</td>
-                <td className="bg-red-600 border-2 border-black p-4 text-white">0,00%</td>
-                <td className="bg-red-800 border-2 border-black p-4 text-white">0,00%</td>
+                <td className="bg-red-600 border-2 border-black p-4">12,50%</td>
+                <td className="bg-red-900 border-2 border-black p-4 text-white">0,00%</td>
+                <td className="bg-red-900 border-2 border-black p-4 text-white">0,00%</td>
               </tr>
 
               {/* segunda linha de conteúdo: classificação textual */}
               <tr>
                 <td className="bg-yellow-300 border-2 border-black p-4">Moderado</td>
-                <td className="bg-red-400 border-2 border-black p-4">Insuficiente</td>
-                <td className="bg-red-600 border-2 border-black p-4 text-white">Inexistente</td>
-                <td className="bg-red-800 border-2 border-black p-4 text-white">Inexistente</td>
+                <td className="bg-red-600 border-2 border-black p-4">Insuficiente</td>
+                <td className="bg-red-900 border-2 border-black p-4 text-white">Inexistente</td>
+                <td className="bg-red-900 border-2 border-black p-4 text-white">Inexistente</td>
               </tr>
 
               {/* terceira linha de conteúdo: símbolos/ícones de intensidade */}
               <tr>
                 {/* você pode ajustar os símbolos para os que preferir (use ícones se quiser) */}
                 <td className="bg-yellow-300 border-2 border-black p-4 text-2xl">▮▮▮</td>
-                <td className="bg-red-400 border-2 border-black p-4 text-2xl">▮</td>
-                <td className="bg-red-600 border-2 border-black p-4 text-2xl text-white">○○</td>
-                <td className="bg-red-800 border-2 border-black p-4 text-2xl text-white">○○</td>
+                <td className="bg-red-600 border-2 border-black p-4 text-2xl">▮</td>
+                <td className="bg-red-900 border-2 border-black p-4 text-2xl text-white">○○</td>
+                <td className="bg-red-900 border-2 border-black p-4 text-2xl text-white">○○</td>
               </tr>
             </tbody>
           </table>
@@ -776,14 +776,14 @@ const Results = () => {
                     <td className="border border-border px-4 py-2">Excelente</td>
                     <td className="border border-border px-4 py-2">81~99%</td>
                     <td className="border border-border px-4 py-2 bg-sky-400"></td>
-                    <td className="border border-border px-4 py-2">I</td>
+                    <td className="border border-border px-4 py-2">IIIII</td>
                   </tr>
                   <tr className="bg-lime-400 font-semibold">
                     <td className="border border-border px-4 py-2">Segunda</td>
                     <td className="border border-border px-4 py-2">Ótimo</td>
                     <td className="border border-border px-4 py-2">61~80%</td>
                     <td className="border border-border px-4 py-2 bg-lime-400"></td>
-                    <td className="border border-border px-4 py-2">II</td>
+                    <td className="border border-border px-4 py-2">IIII</td>
                   </tr>
                   <tr className="bg-yellow-300 font-semibold">
                     <td className="border border-border px-4 py-2">Terceira</td>
@@ -797,14 +797,14 @@ const Results = () => {
                     <td className="border border-border px-4 py-2">Baixo</td>
                     <td className="border border-border px-4 py-2">21~40%</td>
                     <td className="border border-border px-4 py-2 bg-orange-400"></td>
-                    <td className="border border-border px-4 py-2">IV</td>
+                    <td className="border border-border px-4 py-2">II</td>
                   </tr>
                   <tr className="bg-red-500 text-white font-semibold">
                     <td className="border border-border px-4 py-2">Quinta</td>
                     <td className="border border-border px-4 py-2">Insuficiente</td>
                     <td className="border border-border px-4 py-2">01~20%</td>
                     <td className="border border-border px-4 py-2 bg-red-500"></td>
-                    <td className="border border-border px-4 py-2">V</td>
+                    <td className="border border-border px-4 py-2">I</td>
                   </tr>
                   <tr className="bg-red-800 text-white font-semibold">
                     <td className="border border-border px-4 py-2">Sexta</td>
@@ -942,7 +942,7 @@ const Results = () => {
           </Card>
         </div>
 
-        <div className="mb-12">
+        <div className="mb-12 mt-12">
           <IndiceIPCAF />
         </div>
 

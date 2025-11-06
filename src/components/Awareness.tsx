@@ -97,6 +97,31 @@ const Awareness = () => {
               </p>
             </a>
           </div>
+          <h3 className="text-3xl font-bold mb-6 mt-6 text-foreground bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
+            Quer ajudar? Compartilhe os vídeos:
+          </h3>
+          <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+            Conheça o vídeo motivacional para os Agricultores Familiares:{" "}
+            <a
+              href="https://drive.google.com/file/d/1q1R9PQGTduCY_k6rQwuWePl7VWicwAyk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              aqui
+            </a>.
+          </p>
+          <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+            Conheça o vídeo informativo para as Universidades Federais:{" "}
+            <a
+              href={"https://drive.google.com/file/d/12O92crWOvMWZsQodzicB92V5F5pfySET"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              aqui
+            </a>.
+          </p>
         </div>
       </div>
     </section>
