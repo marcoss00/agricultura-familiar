@@ -58,7 +58,7 @@ const Contact = () => {
           {/* Informações de Contato */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-foreground">
+              <h3 className="text-4xl md:text-2xl font-bold mb-6 bg-gradient-to-r from-nature to-earth bg-clip-text text-transparent">
                 Vamos Dialogar
               </h3>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
@@ -84,7 +84,7 @@ const Contact = () => {
             </div>
           </div>
           <div className="bg-gradient-to-r from-nature/10 to-earth/10 p-6 rounded-xl">
-            <h4 className="font-semibold text-lg mb-3 text-foreground">
+            <h4 className="font-semibold text-earth mb-2 text-2xl">
               Oportunidades de Colaboração
             </h4>
             <ul className="space-y-2 text-muted-foreground">
