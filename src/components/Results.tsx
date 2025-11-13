@@ -347,7 +347,7 @@ export const Resultado = () => {
           Resultado
         </CardTitle>
         <CardDescription className="text-black font-medium">
-          
+
         </CardDescription>
       </CardHeader>
 
@@ -366,6 +366,60 @@ export const Resultado = () => {
             revela que sua realização é incipiente e irregular, demonstrando a necessidade de um maior
             envolvimento das Universidades Federais na promoção dessas políticas.
           </p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export const FormulaIPCAF: React.FC = () => {
+  const formulaText = "IPCAF = (número de anos com compras da AF / 8) × 100";
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(formulaText);
+      // Você pode trocar por uma notificação mais bonita se tiver um toast no projeto
+      alert("Fórmula copiada para a área de transferência");
+    } catch {
+      alert("Não foi possível copiar — tente manualmente.");
+    }
+  };
+
+  return (
+    <Card className="shadow-lg border border-gray-200">
+      <CardHeader className="text-center pb-2">
+        <CardTitle className="text-green-700 font-bold uppercase">Cálculo do IPCAF</CardTitle>
+        <CardDescription className="text-black font-medium">
+          Como é calculado o Índice de Potencialidade (IPCAF)
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className="p-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-base text-muted-foreground mb-4">
+            O cálculo do índice é simples e direto. Divide-se o número de anos em que houve compras da agricultura familiar pelo total de anos analisados (oito), e o resultado é multiplicado por 100, obtendo-se assim o percentual de potencialidade da universidade.
+          </p>
+
+          {/* Box da fórmula */}
+          <div
+            className="mt-4 inline-block p-4 rounded-2xl border border-gray-200 shadow-sm bg-gradient-to-br from-white to-gray-50"
+            style={{ minWidth: 360 }}
+            aria-label="Fórmula do IPCAF"
+          >
+            <div className="text-sm text-gray-500 mb-2">Fórmula utilizada</div>
+
+            <div className="flex items-center justify-center gap-4">
+              <div className="text-2xl md:text-3xl font-semibold tracking-tight">
+                {/* elegante display da fórmula */}
+                <span className="inline-block px-3 py-1 rounded-lg bg-gray-100 border border-gray-200">
+                  IPCAF =
+                </span>
+                <span className="ml-3 inline-block text-xl md:text-2xl font-mono bg-white px-3 py-1 rounded-lg border border-dashed border-gray-200">
+                  (nº anos com compras da AF / 8) × 100
+                </span>
+              </div>             
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>
@@ -463,7 +517,7 @@ const Results = () => {
     description:
       "Indicador do Quantitativo da Ocorrência de Compras da AF nas UF Paraenses entre 2017 a 2024.",
     data: [
-      { "Análise Realizada": "Quantidade das ocorrências de compras da Agricultura Familiar realizadas pelas Universidades Federais Paraenses, durante o período analisado.", UFPA: "03", UFRA: "01", UFOPA: "0", UNIFESSPA: "0" },
+      { "Análise Realizada": "Quantidade das ocorrências de compras da Agricultura Familiar realizadas pelas Universidades Federais Paraenses, durante o período analisado.", UFPA: "04", UFRA: "01", UFOPA: "0", UNIFESSPA: "0" },
       { "Análise Realizada": "Percentual da Ocorrência Anual de compras da Agricultura Familiar nas Universidades Federais Paraenses, considerando o período analisado.", UFPA: "50%", UFRA: "12,50%", UFOPA: "0%", UNIFESSPA: "0%" },
     ],
     note: "",
@@ -940,6 +994,11 @@ const Results = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        
+        <div className="mb-12 mt-12">
+          <FormulaIPCAF />
         </div>
 
         <div className="mb-12 mt-12">
